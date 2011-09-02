@@ -12,12 +12,14 @@ filetype indent on
 if has('gui_win32')
   let $temp='t:/vim'
   let $vimrc=$VIMRUNTIME . '/../.vimrc'
+  let $vimfiles=$VIMRUNTIME . '/../vimfiles'
   let $session='D:/AppData/session.vim'
   set guifont=Consolas:h12:cANSI
   "set guifont=Monaco:h10:cANSI
 else
   let $temp='/tmp/vim-' . $USER
   let $vimrc=expand('~/.vimrc')
+  let $vimfiles=expand('~/vim')
   let $session=expand('~/.session.vim')
   "set guifont=Consolas\ 10
   set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
@@ -63,16 +65,25 @@ set dir=$temp
 " commands
 command! AutoWrap set formatoptions+=c formatoptions+=t
 command! AutoWrapOff set formatoptions-=c formatoptions-=t
+command! W :w
 
 map `0 :e $vimrc<cr>
-map ,e          :e <C-R>=expand("%:p:h") . "\\" <cr>
-map ,d          :cd <C-R>=expand("%:p:h")<cr><cr>
-map ,c          :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
-map ,t          :e d:/documents/todo.txt<cr>
-map `d          :E d:<cr>
-
-
+map ,e :e <C-R>=expand("%:p:h") . "\\" <cr>
+map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
+map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
+map ,t :e d:/documents/todo.txt<cr>
+map `d :E d:<cr>
 map `` :tabnew<cr>
+
+map <Leader>p :NERDTreeToggle<cr>
+map <Leader>c :TagbarOpen<cr>
+
+" JSLint ==================================
+func! JSLint()
+  cexpr system('jsl -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
+endfun
+
+map <Leader>j :call JSLint()<cr>
 
 map <space> <PageDown>
 map - <PageUp>
@@ -95,8 +106,6 @@ autocmd BufRead,BufEnter *.xaml setlocal syntax=xml
 autocmd BufRead,BufEnter *.json setlocal syntax=javascript
 autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
 
-"map <c-f12> :setlocal foldmethod=syntax<cr>
-"map <c-f12> :setlocal foldexpr=getline(v:lnum)=~'^\*'?'>1':1<cr>:setlocal foldmethod=expr<cr>
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
 map <c-f11> :vimgrep /^\*/ %<cr>:copen<cr>
@@ -153,24 +162,6 @@ setglobal fileencoding=utf-8 bomb
 " define the heuristics to recognize file encodings
 setglobal fileencodings=ucs-bom,utf-8,default
 
-function! ReplaceStuff()
-  %s/-//g
-  %s/M21/-M21/g
-  %s/Neg/Negative/g
-  %s/Pos/Positive/g
-  %s/\.GIF/Volt/g
-endfunction
-
-nnoremap <silent> <F8> :TlistToggle<CR>
-
-
-let g:miniBufExplMapWindowNavVim = 1 
-let g:miniBufExplMapWindowNavArrows = 1 
-let g:miniBufExplMapCTabSwitchBufs = 1 
-let g:miniBufExplModSelTarget = 1 
-
-let g:SuperTabDefaultCompletionType = "<c-o>"
-
 function! ShowSidebars()
   copen
   TagbarOpen
@@ -188,13 +179,23 @@ map <f11> :call HideSidebars()<cr>
 map <f12> :call ShowSidebars()<cr>
 
 
-func! JSLint()
-  cexpr system('jsl -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
-endfun
-
-augroup Dudi
+augroup David
+  " Javascript
   autocmd!
-  autocmd BufRead,BufEnter *.js map <buffer> `j :call JSLint()<cr>
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
+
+  " Autocomplete
+  autocmd FileType python set omnifunc=pythoncomplete#Complete
+  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+
 augroup END
+
+" Highlight Current Line
+autocmd InsertLeave * set nocursorline
+autocmd InsertEnter * set cursorline
+
+highlight CursorLine guibg=black
+
 
