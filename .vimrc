@@ -80,7 +80,8 @@ map <Leader>c :TagbarOpen<cr>
 
 " JSLint ==================================
 func! JSLint()
-  cexpr system('jsl -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
+  let jsl = $vimfiles . "/bin/win32/jsl/jsl.exe"
+  cexpr system(jsl . ' -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
 endfun
 
 map <Leader>j :call JSLint()<cr>
