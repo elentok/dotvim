@@ -71,7 +71,7 @@ map `0 :e $vimrc<cr>
 map ,e :e <C-R>=expand("%:p:h") . "\\" <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
-map ,t :e d:/documents/todo.txt<cr>
+map ,t :e d:/documents/home.txt<cr>
 map `d :E d:<cr>
 map `` :tabnew<cr>
 
@@ -96,6 +96,8 @@ imap <c-space> <c-x><c-n>
 "autocmd VimEnter * so $session
 autocmd VimEnter * set t_vb=
 
+set foldtext=getline(v:foldstart)
+let php_folding=1
 let g:xml_syntax_folding=1
 autocmd FileType xml setlocal foldmethod=syntax
 
@@ -150,7 +152,6 @@ map `3 :exec ":normal A <c-v><esc>" . (59 - strlen(getline("."))) . "A-"<cr>
 nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
-nmap <c-cr> :Utl<cr>
 
 " Unicode Settings #############################################################
 " With the following settings Vim's UTF-8 behaves as follows:
@@ -190,6 +191,9 @@ augroup David
   autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css set omnifunc=csscomplete#CompleteCSS
 
+  " UTF8
+  autocmd FileType vim setlocal nobomb
+
 augroup END
 
 " Highlight Current Line
@@ -197,5 +201,20 @@ autocmd InsertLeave * set nocursorline
 autocmd InsertEnter * set cursorline
 
 highlight CursorLine guibg=black
+
+func! HomeExecute()
+  let line = getline('.')
+  let line = substitute(line, '^ \+', '', '')
+  let line = substitute(line, ' \+$', '', '')
+  if isdirectory(line)
+    execute 'cd ' . line
+    execute 'e ' . line
+  elseif filereadable(line)
+    execute 'e ' . line
+  endif
+endfunc
+
+" Home file
+autocmd BufRead,BufEnter home.txt map <buffer> <c-cr> :call HomeExecute()<cr>
 
 
