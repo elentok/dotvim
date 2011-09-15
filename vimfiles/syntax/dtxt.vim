@@ -136,3 +136,11 @@ hi def link dtxtTriangleBraces String
 hi def link dtodoPending WarningMsg
 hi def link dtodoComplete Comment
 
+" todo.txt
+syn match todotxtContext "@[^ ]*"
+syn match todotxtProject "+[^ ]*"
+
+hi def link todotxtContext Define
+hi def link todotxtProject Include
+
+

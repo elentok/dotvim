@@ -15,6 +15,7 @@ if has('gui_win32')
   let $vimfiles=$VIMRUNTIME . '/../vimfiles'
   let $session='D:/AppData/session.vim'
   set guifont=Consolas:h12:cANSI
+  let g:ruby_path='C:/ruby187'
   "set guifont=Monaco:h10:cANSI
 else
   let $temp='/tmp/vim-' . $USER
@@ -68,10 +69,10 @@ command! AutoWrapOff set formatoptions-=c formatoptions-=t
 command! W :w
 
 map `0 :e $vimrc<cr>
+map <Leader>h :e d:/documents/home.txt<cr>
 map ,e :e <C-R>=expand("%:p:h") . "\\" <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
-map ,t :e d:/documents/home.txt<cr>
 map `d :E d:<cr>
 map `` :tabnew<cr>
 
