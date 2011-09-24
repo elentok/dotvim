@@ -161,7 +161,8 @@ vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 " - new files with nonascii chars will be saved as UTF-8 (with BOM)
 set encoding=utf-8
 " create Unicode files with B.O.M. by default
-setglobal fileencoding=utf-8 bomb
+"setglobal fileencoding=utf-8 bomb
+setglobal fileencoding=utf-8
 " define the heuristics to recognize file encodings
 setglobal fileencodings=ucs-bom,utf-8,default
 
