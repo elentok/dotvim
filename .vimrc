@@ -68,16 +68,16 @@ command! AutoWrap set formatoptions+=c formatoptions+=t
 command! AutoWrapOff set formatoptions-=c formatoptions-=t
 command! W :w
 
-map `0 :e $vimrc<cr>
-map <Leader>h :e d:/documents/home.txt<cr>
 map ,e :e <C-R>=expand("%:p:h") . "\\" <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
-map `d :E d:<cr>
-map `` :tabnew<cr>
 
-map <Leader>p :NERDTreeToggle<cr>
 map <Leader>c :TagbarOpen<cr>
+map <Leader>d :E d:<cr>
+map <Leader>v :tabe $vimrc<cr>
+map <Leader>h :tabe d:/documents/home.txt<cr>
+map <Leader>f :NERDTreeToggle<cr>
+map <Leader>s :set spell!<cr>
 
 " JSLint ==================================
 func! JSLint()
@@ -115,6 +115,8 @@ map <c-s-f12> :setlocal foldmethod=manual<cr>zE
 map <c-f11> :vimgrep /^\*/ %<cr>:copen<cr>
 
 imap <f12> <c-r>=strftime("%d/%m/%Y %H:%M")<cr>
+imap <c-d> <c-r>=strftime("%Y-%m-%d %H:%M")<cr>
+
 
 function! MyFoldingExpr(lnum)
     let line=getline(a:lnum)
@@ -197,6 +199,9 @@ augroup David
   " UTF8
   autocmd FileType vim setlocal nobomb
 
+  ".vimrc
+  autocmd BufWritePost .vimrc source %
+
 augroup END
 
 " Highlight Current Line
@@ -217,7 +222,10 @@ func! HomeExecute()
   endif
 endfunc
 
-" Home file
-autocmd BufRead,BufEnter home.txt map <buffer> <c-cr> :call HomeExecute()<cr>
+augroup David_Home
+  autocmd!
+  " Home file
+  autocmd BufRead,BufEnter home.txt map <buffer> <c-cr> :call HomeExecute()<cr>
+augroup END
 
 
