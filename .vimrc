@@ -20,7 +20,7 @@ if has('gui_win32')
 else
   let $temp='/tmp/vim-' . $USER
   let $vimrc=expand('~/.vimrc')
-  let $vimfiles=expand('~/vim')
+  let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   "set guifont=Consolas\ 10
   set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
@@ -81,7 +81,11 @@ map <Leader>s :set spell!<cr>
 
 " JSLint ==================================
 func! JSLint()
-  let jsl = $vimfiles . "/bin/win32/jsl/jsl.exe"
+  if has("win32")
+    let jsl = $vimfiles . "/bin/win32/jsl/jsl.exe"
+  else
+    let jsl = $vimfiles . "/bin/linux/jsl/jsl"
+  endif
   cexpr system(jsl . ' -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
 endfun
 
