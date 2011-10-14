@@ -113,6 +113,7 @@ autocmd BufRead,BufEnter *.autoSetup setlocal syntax=xml
 autocmd BufRead,BufEnter *.xaml setlocal syntax=xml
 autocmd BufRead,BufEnter *.json setlocal syntax=javascript
 autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
+autocmd BufRead,BufEnter *.css setlocal foldmethod=marker
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
