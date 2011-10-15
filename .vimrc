@@ -76,8 +76,11 @@ map <Leader>c :TagbarOpen<cr>
 map <Leader>d :E d:<cr>
 map <Leader>v :tabe $vimrc<cr>
 map <Leader>h :tabe d:/documents/home.txt<cr>
-map <Leader>f :NERDTreeToggle<cr>
+map <Leader>t :NERDTreeToggle<cr>
 map <Leader>s :set spell!<cr>
+
+map <Leader>f :FufFile **/<cr>
+map <Leader>b :FufBuffer<cr>
 
 " JSLint ==================================
 func! JSLint()
