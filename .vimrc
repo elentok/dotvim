@@ -5,7 +5,7 @@ color molokai
 
 set nocompatible
 
-
+call pathogen#infect()
 filetype plugin on
 filetype indent on
 
