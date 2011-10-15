@@ -23,11 +23,12 @@ else
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   "set guifont=Consolas\ 10
-  set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
+  "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
+  set guifont=Ubuntu\ Mono\ 14
 endif
 
-map `f :set guifont=Consolas:h10<cr>
-map `F :set guifont=Courier_New:h10:cHEBREW<cr>
+map `f :set guifont=Consolas:h12<cr>
+map `F :set guifont=Courier_New:h12:cHEBREW<cr>
 
 if getftype($temp) != 'dir'
   exec '!mkdir ' . $temp
