@@ -71,6 +71,7 @@ command! AutoWrap set formatoptions+=c formatoptions+=t
 command! AutoWrapOff set formatoptions-=c formatoptions-=t
 command! W :w
 
+map ,t :tabe <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
