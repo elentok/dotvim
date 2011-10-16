@@ -213,6 +213,9 @@ augroup David
   ".vimrc
   autocmd BufWritePost .vimrc source %
 
+  "snippets
+  autocmd BufWritePost *.snippets call ReloadAllSnippets()
+
 augroup END
 
 " Highlight Current Line
