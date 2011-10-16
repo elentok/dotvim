@@ -14,6 +14,7 @@ if has('gui_win32')
   let $vimrc=$VIMRUNTIME . '/../.vimrc'
   let $vimfiles=$VIMRUNTIME . '/../vimfiles'
   let $session='D:/AppData/session.vim'
+  let $delimiter = '\\'
   set guifont=Consolas:h12:cANSI
   let g:ruby_path='C:/ruby187'
   "set guifont=Monaco:h10:cANSI
@@ -22,6 +23,7 @@ else
   let $vimrc=expand('~/.vimrc')
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
+  let $delimiter = '/'
   "set guifont=Consolas\ 10
   "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
   set guifont=Ubuntu\ Mono\ 14
@@ -69,7 +71,7 @@ command! AutoWrap set formatoptions+=c formatoptions+=t
 command! AutoWrapOff set formatoptions-=c formatoptions-=t
 command! W :w
 
-map ,e :e <C-R>=expand("%:p:h") . "\\" <cr>
+map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 
