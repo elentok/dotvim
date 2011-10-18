@@ -83,7 +83,9 @@ map <Leader>h :tabe d:/documents/home.txt<cr>
 map <Leader>t :NERDTreeToggle<cr>
 map <Leader>s :set spell!<cr>
 
+map <Leader>o :FufFile<cr>
 map <Leader>f :FufFile **/<cr>
+map <Leader>F :FufRenewCache<cr>
 map <Leader>b :FufBuffer<cr>
 
 " JSLint ==================================
