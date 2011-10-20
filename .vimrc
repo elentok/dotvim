@@ -33,7 +33,7 @@ map `f :set guifont=Consolas:h12<cr>
 map `F :set guifont=Courier_New:h12:cHEBREW<cr>
 
 if getftype($temp) != 'dir'
-  exec '!mkdir ' . $temp
+  exec 'silent !mkdir ' . $temp
 endif
 
 " if getftype($session) != 'file'
