@@ -148,7 +148,7 @@ endfunction
 map ,, :nohls<cr>
 "set guioptions=egmrLtT
 "set guioptions=egmrLt
-set guioptions=egmrLt
+set guioptions=egrLt
 
 behave mswin
 
