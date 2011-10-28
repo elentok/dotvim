@@ -26,7 +26,8 @@ else
   let $delimiter = '/'
   "set guifont=Consolas\ 10
   "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-  set guifont=Ubuntu\ Mono\ 14
+  set guifont=Monospace\ 10
+  "set guifont=Ubuntu\ Mono\ 14
 endif
 
 map `f :set guifont=Consolas:h12<cr>
@@ -41,12 +42,11 @@ endif
 " endif
 
 
-
 " misc
 set number
 set wildmenu wildmode=full
 set grepprg="findstr /nI"
-set showcmd undolevels=1000 history=300
+set undolevels=1000 history=300
 set incsearch ignorecase hlsearch
 set backspace=2 whichwrap=<,>,[,] expandtab
 set nowrap linebreak showbreak=>>
@@ -60,6 +60,9 @@ set statusline=%f\%=[B:%n][L:%03l/%L][C:%02c%V]\ %p/%P
 set ts=2 softtabstop=2 shiftwidth=2
 set titlestring=0\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
 set t_vb=
+" for some reason 'showcmd' causes a delay after pressing <Escape> in insert
+" mode, so I'm disabling it for now:
+"  set showcmd
 
 " backup
 set backup writebackup
