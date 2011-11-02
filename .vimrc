@@ -208,10 +208,11 @@ augroup David
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
 
   " Autocomplete
-  autocmd FileType python set omnifunc=pythoncomplete#Complete
-  autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-  autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-  autocmd FileType css set omnifunc=csscomplete#CompleteCSS
+  autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+  autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+  autocmd FileType html setlocal autoindent omnifunc=htmlcomplete#CompleteTags
+  autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+  autocmd FileType smarty setlocal autoindent
 
   " UTF8
   autocmd FileType vim setlocal nobomb
@@ -225,9 +226,10 @@ augroup David
 augroup END
 
 " Highlight Current Line
-autocmd InsertLeave * set nocursorline
-autocmd InsertEnter * set cursorline
+"autocmd InsertLeave * set nocursorline
+"autocmd InsertEnter * set cursorline
 
+set cursorline
 highlight CursorLine guibg=black
 
 func! HomeExecute()
