@@ -26,8 +26,7 @@ else
   let $delimiter = '/'
   "set guifont=Consolas\ 10
   "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-  set guifont=Monospace\ 10
-  "set guifont=Ubuntu\ Mono\ 14
+  set guifont=Ubuntu\ Mono\ 13
 endif
 
 map `f :set guifont=Consolas:h12<cr>
