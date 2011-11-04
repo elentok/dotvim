@@ -229,7 +229,7 @@ augroup END
 "autocmd InsertEnter * set cursorline
 
 set cursorline
-highlight CursorLine guibg=black
+highlight CursorLine guibg=black cterm=none term=none ctermbg=darkblue
 
 func! HomeExecute()
   let line = getline('.')
