@@ -1,7 +1,11 @@
 syntax enable
 "color koehler
 "color wombat
-color molokai
+if has('gui_running')
+  color molokai
+else
+  color robokai
+endif
 
 set nocompatible
 
