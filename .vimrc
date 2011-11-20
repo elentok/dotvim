@@ -253,4 +253,7 @@ augroup David_Home
   autocmd BufRead,BufEnter home.txt map <buffer> <c-cr> :call HomeExecute()<cr>
 augroup END
 
-
+" ruby
+let g:rubycomplete_buffer_loading = 1
+let g:rubycomplete_classes_in_global = 1
+let g:rubycomplete_rails = 1
