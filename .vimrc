@@ -1,7 +1,7 @@
 " vim: foldmethod=marker
 " Core {{{1 
 
-set nocompatible
+set nocompatible " disable vi compatibility
 syntax enable
 call pathogen#infect()
 filetype plugin on
@@ -26,16 +26,13 @@ if has('gui_win32')
   let $defaultfont=Consolas:h12:cANSI
   let $alternatefont=Courier_New:h12:cHEBREW
   let g:ruby_path='C:/ruby187'
-  "set guifont=Monaco:h10:cANSI
+  set grepprg="findstr /nI"
 else
   let $temp='/tmp/vim-' . $USER
   let $vimrc=expand('~/.vimrc')
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   let $delimiter = '/'
-  "set guifont=Consolas\ 10
-  "set guifont=Bitstream\ Vera\ Sans\ Mono\ 12
-  "set guifont=Ubuntu\ Mono\ 13
   let $defaultfont='Monaco\ 10'
   let $alternatefont='Ubuntu\ Mono\ 13'
 endif
@@ -49,42 +46,61 @@ endif
 " Settings {{{1
 behave mswin
 set guioptions=egrLt
-set number
-set wildmenu wildmode=full
-set grepprg="findstr /nI"
-set undolevels=1000 history=300
-set incsearch ignorecase hlsearch
-set backspace=2 whichwrap=<,>,[,] expandtab
-set nowrap linebreak showbreak=>>
+set number            " show line numbers
+
+set undolevels=1000
+set history=300       " remember 300 commands
+set visualbell t_vb=
+
+set showmatch                  " briefly jump to matching parenthesis
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set whichwrap=<,>,[,]
+set expandtab
+set nowrap
+set linebreak
+set showbreak=>>
+
+" Wild mode:
+set wildmenu
+set wildmode=full
+set wildignorecase
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj
+
+" Formatting
 set formatoptions=qro
-"to enable autowrap: set formatoptions+=ct
 set fillchars="vert:|"
-set vb t_vb=
-set ruler laststatus=2 " enable ruler + always show the statusline
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
+" Rulers
+set ruler             " enable ruler
+set laststatus=2      " always show the statusline
 set rulerformat=%40(%3*[B:%n]%1*[L:%03l/%L]%2*[C:%02c]%4*[P:%03p/%P]%6*%m%r%)
 set statusline=%f\ %y\%=[B:%n][L:%03l/%L][C:%02c%V]\ %p/%P
-set ts=2 softtabstop=2 shiftwidth=2
 set titlestring=0\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
-set t_vb=
-" for some reason 'showcmd' causes a delay after pressing <Escape> in insert
-" mode, so I'm disabling it for now:
-"  set showcmd
 
-" Highlight Current Line:
+" Search
+set incsearch   " incremental search
+set ignorecase  " ignore case when search
+set smartcase   " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set hlsearch    " highlight search terms
+
+" Highlight Current Line
 set cursorline
 highlight CursorLine guibg=black cterm=none term=none ctermbg=darkblue
 
-" Backup:
+" Backup
 set backup writebackup
 set backupdir=$temp
 set dir=$temp
 
-" Folding:
+" Folding
 set foldtext=getline(v:foldstart)
 let php_folding=1
 let g:xml_syntax_folding=1
 
-" Ruby:
+" Ruby
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
@@ -266,3 +282,11 @@ func! SwitchFile()
   endif
 endfunc
 map ,s :call SwitchFile()<cr>
+
+" Misc Notes {{{1
+"
+" - for some reason 'showcmd' causes a delay after pressing <Escape> in insert
+"   mode, so I'm disabling it for now:
+"     set showcmd
+"
+" - to enable autowrap: set formatoptions+=ct
