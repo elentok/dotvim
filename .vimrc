@@ -262,26 +262,6 @@ func! HomeExecute()
   endif
 endfunc
 
-" Extra: Switch js/coffee css/scss {{{1
-func! SwitchFile()
-  let ext = tolower(expand("%:e"))
-  let newext = ""
-  if ext == "js"
-    let newext = "coffee"
-  elseif ext == "coffee"
-    let newext = "js"
-  elseif ext == "css"
-    let newext = "scss"
-  elseif ext == "scss"
-    let newext = "css"
-  endif
-
-  if newext != ""
-    let otherfile = substitute(expand("%"), "\." . ext . "$", "." . newext, "")
-    exec "edit " . otherfile
-  endif
-endfunc
-map ,s :call SwitchFile()<cr>
 
 " Misc Notes {{{1
 "
