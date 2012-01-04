@@ -19,3 +19,24 @@ func! OpenFile(filename)
 endfunc
 
 map `o :call OtherFile()<cr>
+
+func! SwitchBetweenSpecAndSource()
+  let filename = expand("%:t")
+  let other_buffer = ""
+  if filename =~ "_spec"
+    let other_buffer = substitute(filename, "_spec", "", "")
+  else
+    let other_buffer = expand("%:r") . "_spec." . expand("%:e")
+  endif
+
+  if other_buffer != ""
+    let buffer_name = bufname(other_buffer)
+    if buffer_name != ""
+      exec "buffer " . buffer_name
+    else
+      exec "find " . buffer_name
+    endif
+  endif
+endfunc
+
+map `p :call SwitchBetweenSpecAndSource()<cr>
