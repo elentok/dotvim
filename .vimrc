@@ -12,7 +12,10 @@ filetype indent on
 if has('gui_running')
   color molokai-nobold
 else
-  color robokai
+  set t_Co=256
+  color molokai
+  hi Normal ctermbg=none
+  hi NonText ctermbg=none
 endif
 
 " OS Specific {{{1
@@ -88,7 +91,8 @@ set hlsearch    " highlight search terms
 
 " Highlight Current Line
 set cursorline
-highlight CursorLine guibg=black cterm=none term=none ctermbg=darkblue
+highlight CursorLine guibg=black cterm=none term=none ctermbg=black
+
 
 " Backup
 set backup writebackup
@@ -167,6 +171,9 @@ map <m-s-f10> :simalt ~r<cr>
 
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
+
+" super yank (yank to * and + registers)
+vmap `y "*ygv"+y
  
 " add symbols to the end of the lines:
 map `1 :exec ":normal A <c-v><esc>" . (79 - strlen(getline("."))) . "A#"<cr>
