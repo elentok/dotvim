@@ -34,7 +34,7 @@ func! SwitchBetweenSpecAndSource()
     if buffer_name != ""
       exec "buffer " . buffer_name
     else
-      exec "find " . buffer_name
+      exec "find " . other_buffer
     endif
   endif
 endfunc
