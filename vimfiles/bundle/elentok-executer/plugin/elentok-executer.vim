@@ -8,17 +8,22 @@ let g:Executer_CommandByExtension = {
       \}
 
 func! Executer()
+  let filename = expand("%:t")
   let extension = tolower(expand("%:e"))
+  let exec_cmd = "%"
+  if filename =~ "_spec.rb"
+    let exec_cmd = "rspec %"
+  elseif has_key(g:Executer_CommandByExtension, extension)
+    let exec_cmd = "" . g:Executer_CommandByExtension[extension] . " %"
+  endif
+
   exec "silent !clear"
   exec "silent !echo '================================='"
-  if has_key(g:Executer_CommandByExtension, extension)
-    let command = g:Executer_CommandByExtension[extension]
-    exec "silent !echo 'Executing " . command . " " . expand("%") . "'"
-    exec "silent !echo '================================='"
-    exec "!" . command . " %"
-  else
-    exec "!%"
-  endif
+  silent exec "!echo '$ " . expand(exec_cmd) . "'"
+  exec "silent !echo '================================='"
+  exec "!" . exec_cmd
 endfunc
 
 map ,r :w<cr>:call Executer()<cr>
+
+map ,s :w<cr>:silent !clear<cr>:!rspec spec/<cr>
