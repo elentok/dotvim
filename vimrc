@@ -12,10 +12,12 @@ filetype indent on
 if has('gui_running')
   color molokai-nobold
 else
+  " enable 256 colors in the terminal
   set t_Co=256
   color molokai
   hi Normal ctermbg=none
   hi NonText ctermbg=none
+  hi Visual ctermbg=238
 endif
 
 " OS Specific {{{1
