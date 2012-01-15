@@ -12,7 +12,7 @@ func! Executer()
   let extension = tolower(expand("%:e"))
   let exec_cmd = "%"
   if filename =~ "_spec.rb"
-    let exec_cmd = "rspec %"
+    let exec_cmd = "rspec -c %"
   elseif has_key(g:Executer_CommandByExtension, extension)
     let exec_cmd = "" . g:Executer_CommandByExtension[extension] . " %"
   endif
@@ -26,4 +26,4 @@ endfunc
 
 map ,r :w<cr>:call Executer()<cr>
 
-map ,s :w<cr>:silent !clear<cr>:!rspec spec/<cr>
+map ,s :w<cr>:silent !clear<cr>:!rspec -c spec/<cr>
