@@ -26,7 +26,7 @@ func! SwitchBetweenSpecAndSource()
   if filename =~ "_spec"
     let other_buffer = substitute(filename, "_spec", "", "")
   else
-    let other_buffer = expand("%:r") . "_spec." . expand("%:e")
+    let other_buffer = expand("%:t:r") . "_spec." . expand("%:e")
   endif
 
   if other_buffer != ""
