@@ -26,4 +26,4 @@ endfunc
 
 map ,r :w<cr>:call Executer()<cr>
 
-map ,s :w<cr>:silent !clear<cr>:!rspec -c spec/<cr>
+map ,s :w<cr>:silent !clear<cr>:!rspec -c .<cr>
