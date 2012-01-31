@@ -1,4 +1,4 @@
-let g:minWindowWidth = 100
+let g:minWindowWidth = 80
 let g:minWindowHeight = 20
 
 func! MakeWindowWideEnough()
