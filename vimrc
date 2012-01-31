@@ -52,6 +52,7 @@ endif
 behave mswin
 set guioptions=egrLt
 set number            " show line numbers
+set mouse=a
 
 set undolevels=1000
 set history=300       " remember 300 commands
