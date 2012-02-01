@@ -188,6 +188,9 @@ nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
 
+" Keepcase
+vmap <F2> :SubstituteCase@
+
 " Auto Commands {{{1
 augroup Elentok_Misc
   autocmd!
