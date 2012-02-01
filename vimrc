@@ -112,6 +112,9 @@ let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
+" Fuzzyfinder tweaks
+let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules'
+
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
 " - new files with no nonascii chars (>1byte) will be saved as ANSI (no BOM)
