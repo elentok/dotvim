@@ -82,9 +82,11 @@ set shiftwidth=2
 " Rulers
 set ruler             " enable ruler
 set laststatus=2      " always show the statusline
-set rulerformat=%40(%3*[B:%n]%1*[L:%03l/%L]%2*[C:%02c]%4*[P:%03p/%P]%6*%m%r%)
-set statusline=%f\ %y\%=[B:%n][L:%03l/%L][C:%02c%V]\ %p/%P
 set titlestring=0\ %t%(\ %M%)%(\ (%{expand(\"%:~:.:h\")})%)%(\ %a%)
+
+"not necessary when using the powerline plugin:
+"set rulerformat=%40(%3*[B:%n]%1*[L:%03l/%L]%2*[C:%02c]%4*[P:%03p/%P]%6*%m%r%)
+"set statusline=%f\ %y\%=[B:%n][L:%03l/%L][C:%02c%V]\ %p/%P
 
 " Search
 set incsearch   " incremental search
@@ -114,6 +116,9 @@ let g:rubycomplete_rails = 1
 
 " Fuzzyfinder tweaks
 let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules'
+
+" Powerline
+let g:Powerline_symbols = 'fancy'
 
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
