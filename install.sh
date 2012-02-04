@@ -9,7 +9,7 @@ echo "=============================="
 ln -sf "$DIR/vimrc" ~/.vimrc
 ln -sf "$DIR/vimfiles" ~/.vim
 
-sh "$DIR/vimfiles/bundle/powerline/fonts/install.sh"
+bash "$DIR/vimfiles/bundle/powerline/fonts/install.sh"
 
 
 
