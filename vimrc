@@ -53,6 +53,7 @@ behave mswin
 set guioptions=egrLt
 set number            " show line numbers
 set mouse=a
+set scrolloff=3
 
 set undolevels=1000
 set history=300       " remember 300 commands
