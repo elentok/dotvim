@@ -28,8 +28,8 @@ if has('gui_win32')
   let $vimfiles=$VIMRUNTIME . '/../vimfiles'
   let $session='D:/AppData/session.vim'
   let $delimiter='\\'
-  let $defaultfont=Consolas:h12:cANSI
-  let $alternatefont=Courier_New:h12:cHEBREW
+  let $defaultfont="Consolas:h12:cANSI"
+  let $alternatefont="Courier_New:h12:cHEBREW"
   let g:ruby_path='C:/ruby187'
   set grepprg="findstr /nI"
 else
