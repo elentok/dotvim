@@ -150,7 +150,6 @@ map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 
-map <Leader>c :TagbarOpen<cr>
 map <Leader>d :E d:<cr>
 map <Leader>v :tabe $vimrc<cr>
 map <Leader>h :tabe d:/documents/home.txt<cr>
@@ -285,6 +284,13 @@ func! HomeExecute()
   endif
 endfunc
 
+
+" Extra: Taglist settings {{{1
+let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_WinWidth = 50
+let Tlist_GainFocus_On_ToggleOpen = 1
+map <F3> :TlistToggle<cr>
+map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " Misc Notes {{{1
 "
