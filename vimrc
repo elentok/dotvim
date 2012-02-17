@@ -40,6 +40,8 @@ else
   let $delimiter = '/'
   let $defaultfont='Monaco\ 10'
   let $alternatefont='Ubuntu\ Mono\ 13'
+  " the 'wildignorecase' option is not available for windows
+  set wildignorecase
 endif
 
 exec "set guifont=" . $defaultfont
@@ -70,7 +72,6 @@ set showbreak=>>
 " Wild mode:
 set wildmenu
 set wildmode=full
-set wildignorecase
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj
 
 " Formatting
