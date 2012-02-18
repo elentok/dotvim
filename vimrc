@@ -153,11 +153,11 @@ map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map <Leader>d :E d:<cr>
 map <Leader>v :tabe $vimrc<cr>
 map <Leader>h :tabe d:/documents/home.txt<cr>
-map <Leader>t :NERDTreeToggle<cr>
 map <Leader>s :set spell!<cr>
 
 map <Leader>o :FufFile<cr>
-map <Leader>f :FufFile **/<cr>
+map <Leader><Leader> :FufFile **/<cr>
+map <Leader>t :FufTag<cr>
 map <Leader>F :FufRenewCache<cr>
 map <Leader>b :FufBuffer<cr>
 
