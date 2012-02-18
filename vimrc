@@ -249,8 +249,11 @@ map <Leader>j :call JSLint()<cr>
 
 " Extra: CoffeeScript {{{1
 func! CoffeeMake()
-  silent make
-  cw
+  if expand("%:t") =~ '.js.coffee'
+  else
+    silent make
+    cw
+  end
 endfunc
 augroup Elentok_CoffeeScript
   autocmd!
