@@ -9,4 +9,5 @@ let sass_args = ' --update --force --no-cache '
 
 let &makeprg='sass ' . sass_args . fnameescape(expand("%"))
 
-CompilerSet errorformat=WARNING\ on\ line\ %l\ of\ %f:
+CompilerSet errorformat=WARNING\ on\ line\ %l\ of\ %f:,
+                       \%*[\ ]error\ %f\ (Line\ %l:%m)
