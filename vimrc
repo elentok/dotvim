@@ -200,6 +200,8 @@ vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 " Keepcase
 vmap <F2> :SubstituteCase@
 
+map ,R :!clear; rspec --color --format d spec<cr>
+
 " Auto Commands {{{1
 augroup Elentok_Misc
   autocmd!
