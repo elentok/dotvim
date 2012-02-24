@@ -136,12 +136,13 @@ endf
 
 " Define "aliasft" snippets for the filetype "realft".
 fun s:DefineSnips(dir, aliasft, realft)
-	for path in split(globpath(a:dir, a:aliasft.'/')."\n".
-					\ globpath(a:dir, a:aliasft.'-*/'), "\n")
+	let dir = substitute(a:dir, '\\', '/', 'g')
+	for path in split(globpath(dir, a:aliasft.'/')."\n".
+					\ globpath(dir, a:aliasft.'-*/'), "\n")
 		call ExtractSnips(path, a:realft)
 	endfor
-	for path in split(globpath(a:dir, a:aliasft.'.snippets')."\n".
-					\ globpath(a:dir, a:aliasft.'-*.snippets'), "\n")
+	for path in split(globpath(dir, a:aliasft.'.snippets')."\n".
+					\ globpath(dir, a:aliasft.'-*.snippets'), "\n")
 		call ExtractSnipsFile(path, a:realft)
 	endfor
 endf
