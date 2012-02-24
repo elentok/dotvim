@@ -23,7 +23,7 @@ endif
 " OS Specific {{{1
 
 if has('gui_win32')
-  let $temp='t:/vim'
+  let $temp_dir=$TEMP . '\\vim'
   let $vimrc=$VIMRUNTIME . '/../.vimrc'
   let $vimfiles=$VIMRUNTIME . '/../vimfiles'
   let $session='D:/AppData/session.vim'
@@ -32,22 +32,24 @@ if has('gui_win32')
   let $alternatefont="Courier_New:h12:cHEBREW"
   let g:ruby_path='C:/ruby187'
   set grepprg="findstr /nI"
+  let g:Powerline_symbols='compatible'
 else
-  let $temp='/tmp/vim-' . $USER
+  let $temp_dir='/tmp/vim-' . $USER
   let $vimrc=expand('~/.vimrc')
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   let $delimiter = '/'
   let $defaultfont='Monaco\ 10'
   let $alternatefont='Ubuntu\ Mono\ 13'
+  let g:Powerline_symbols='fancy'
   " the 'wildignorecase' option is not available for windows
   set wildignorecase
 endif
 
 exec "set guifont=" . $defaultfont
 
-if getftype($temp) != 'dir'
-  exec 'silent !mkdir ' . $temp
+if getftype($temp_dir) != 'dir'
+  exec 'silent !mkdir ' . $temp_dir
 endif
 
 " Settings {{{1
@@ -103,8 +105,8 @@ highlight CursorLine guibg=black cterm=none term=none ctermbg=black
 
 " Backup
 set backup writebackup
-set backupdir=$temp
-set dir=$temp
+set backupdir=$temp_dir
+set dir=$temp_dir
 
 " Folding
 set foldtext=getline(v:foldstart)
@@ -118,9 +120,6 @@ let g:rubycomplete_rails = 1
 
 " Fuzzyfinder tweaks
 let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules'
-
-" Powerline
-let g:Powerline_symbols = 'fancy'
 
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
