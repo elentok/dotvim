@@ -141,40 +141,37 @@ command! W :w
 
 " Key Mappings {{{1
 
-map `f :exec "set guifont=" . $defaultfont<cr>
-map `F :exec "set guifont=" . $alternatefont<cr>
+" Basics
+map \\ :nohls<cr>
+map \s :set spell!<cr>
+map <space> <PageDown>
+map - <PageUp>
+map <backspace> zc
+imap <c-s> <c-o>:w<cr>
+" super yank (yank to * and + registers)
+vmap \y "*ygv"+y
+vmap \r :SubstituteCase@
 
+
+" File navigation
 map ,t :tabe <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
-
-map <Leader>d :E d:<cr>
-map <Leader>v :tabe $vimrc<cr>
-map <Leader>h :tabe d:/documents/home.txt<cr>
-map <Leader>s :set spell!<cr>
-
-map <Leader>o :FufFile<cr>
-map <Leader><Leader> :FufFile **/<cr>
-map <Leader>t :FufTag<cr>
-map <Leader>F :FufRenewCache<cr>
-map <Leader>b :FufBuffer<cr>
-
-map <space> <PageDown>
-map - <PageUp>
-map <backspace> zc
-
-imap <c-s> <c-o>:w<cr>
-imap <c-space> <c-x><c-n>
+map ,v :tabe $vimrc<cr>
+map ,o :FufFile<cr>
+map ,, :FufFile **/<cr>
+map ,t :FufTag<cr>
+map ,r :FufRenewCache<cr>
+map ,b :FufBuffer<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
 map <c-f11> :vimgrep /^\*/ %<cr>:copen<cr>
 
-imap <f12> <c-r>=strftime("%d/%m/%Y %H:%M")<cr>
-imap <c-d> <c-r>=strftime("%Y-%m-%d %H:%M")<cr>
+map `f :exec "set guifont=" . $defaultfont<cr>
+map `F :exec "set guifont=" . $alternatefont<cr>
 
-map ,, :nohls<cr>
 map <m-space> :simalt ~<cr>
 imap <m-space> <c-o>:simalt ~<cr>
 map <m-f10> :simalt ~x<cr>
@@ -183,8 +180,8 @@ map <m-s-f10> :simalt ~r<cr>
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
-" super yank (yank to * and + registers)
-vmap `y "*ygv"+y
+map `R :!clear; rspec --color --format d spec<cr>
+
  
 " add symbols to the end of the lines:
 map `1 :exec ":normal A <c-v><esc>" . (79 - strlen(getline("."))) . "A#"<cr>
@@ -196,10 +193,6 @@ nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
 
-" Keepcase
-vmap <F2> :SubstituteCase@
-
-map ,R :!clear; rspec --color --format d spec<cr>
 
 " Auto Commands {{{1
 augroup Elentok_Misc
@@ -214,7 +207,7 @@ augroup Elentok_Misc
 
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
-  autocmd BufRead,BufEnter *.json setlocal syntax=javascript
+  autocmd BufRead,BufEnter *.json setlocal filetype=javascript
 
   " Autocomplete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
