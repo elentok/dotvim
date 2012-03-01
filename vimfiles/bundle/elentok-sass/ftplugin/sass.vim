@@ -1,9 +1,12 @@
 compiler sass
 
 func! SassMake()
-  silent make
-  cw
-  redraw!
+  if expand("%:t") =~ '.css.sass'
+  else
+    silent make
+    cw
+    redraw!
+  end
 endfunc
 
 augroup SassAutoCmdGroup
