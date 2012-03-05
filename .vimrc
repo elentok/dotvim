@@ -99,8 +99,8 @@ set smartcase   " ignore case if search pattern is all lowercase, case-sensitive
 set hlsearch    " highlight search terms
 
 " Highlight Current Line
-set cursorline
-highlight CursorLine guibg=black cterm=none term=none ctermbg=black
+"set cursorline
+"highlight CursorLine guibg=black cterm=none term=none ctermbg=black
 
 
 " Backup
@@ -119,7 +119,7 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 " Fuzzyfinder tweaks
-let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules'
+let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules|tmp'
 
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
@@ -152,6 +152,8 @@ imap <c-s> <c-o>:w<cr>
 vmap \y "*ygv"+y
 vmap \r :SubstituteCase@
 
+imap <f2> <c-o>:set rl!<cr>
+
 
 " File navigation
 map ,t :tabe <C-R>=expand("%:p:h") . $delimiter <cr>
@@ -162,7 +164,7 @@ map ,v :tabe $vimrc<cr>
 map ,o :FufFile<cr>
 map ,, :FufFile **/<cr>
 map ,t :FufTag<cr>
-map ,r :FufRenewCache<cr>
+map ,R :FufRenewCache<cr>
 map ,b :FufBuffer<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
@@ -180,7 +182,7 @@ map <m-s-f10> :simalt ~r<cr>
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
-map `R :!clear; rspec --color --format d spec<cr>
+map \r :!clear; rspec --color --format d spec<cr>
 
  
 " add symbols to the end of the lines:
