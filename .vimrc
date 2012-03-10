@@ -154,6 +154,7 @@ vmap \y "*ygv"+y
 vmap \r :SubstituteCase@
 
 imap <f2> <c-o>:set rl!<cr>
+map <f2> :set rl!<cr>
 
 
 " File navigation
