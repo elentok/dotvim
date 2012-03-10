@@ -58,6 +58,7 @@ set guioptions=egrLt
 set number            " show line numbers
 set mouse=a
 set scrolloff=3
+set iskeyword=@,48-57,_,192-255,$,#,-
 
 set undolevels=1000
 set history=300       " remember 300 commands
@@ -244,17 +245,17 @@ endfun
 map <Leader>j :call JSLint()<cr>
 
 " Extra: CoffeeScript {{{1
-func! CoffeeMake()
-  if expand("%:t") =~ '.js.coffee'
-  else
-    silent make
-    cw
-  end
-endfunc
-augroup Elentok_CoffeeScript
-  autocmd!
-  autocmd BufWritePost *.coffee call CoffeeMake()
-augroup END
+"func! CoffeeMake()
+  "if expand("%:t") =~ '.js.coffee'
+  "else
+    "silent make
+    "cw
+  "end
+"endfunc
+"augroup Elentok_CoffeeScript
+  "autocmd!
+  "autocmd BufWritePost *.coffee call CoffeeMake()
+"augroup END
 
 " Extra: Folding Expression {{{1
 function! MyFoldingExpr(lnum)
