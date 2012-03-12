@@ -212,6 +212,7 @@ augroup Elentok_Misc
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
   autocmd BufRead,BufEnter *.json setlocal filetype=javascript
+  autocmd BufRead,BufEnter Brewfile setlocal filetype=coffee
 
   " Autocomplete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
