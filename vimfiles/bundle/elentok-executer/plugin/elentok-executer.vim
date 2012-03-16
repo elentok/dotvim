@@ -12,7 +12,7 @@ func! Executer()
   let extension = tolower(expand("%:e"))
   let exec_cmd = "%"
   if filename =~ "_spec.rb"
-    let exec_cmd = "rspec -c %"
+    let exec_cmd = "rspec -f documentation -c %"
   elseif filename =~ "\.feature$"
     let exec_cmd = "cucumber"
   elseif has_key(g:Executer_CommandByExtension, extension)
