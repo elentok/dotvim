@@ -1,24 +1,4 @@
 " vim: foldmethod=marker
-" Core {{{1 
-
-set nocompatible " disable vi compatibility
-syntax enable
-call pathogen#infect()
-filetype plugin indent on
-
-" Colors {{{1
-
-if has('gui_running')
-  color molokai-nobold
-else
-  " enable 256 colors in the terminal
-  set t_Co=256
-  color molokai
-  hi Normal ctermbg=none
-  hi NonText ctermbg=none
-  hi Visual ctermbg=238
-endif
-
 " OS Specific {{{1
 
 if has('gui_win32')
@@ -49,6 +29,61 @@ exec "set guifont=" . $defaultfont
 
 if getftype($temp_dir) != 'dir'
   exec 'silent !mkdir ' . $temp_dir
+endif
+
+" Vundle {{{1
+set nocompatible " disable vi compatibility
+filetype off
+let &rtp .= ',' . $vimfiles . "/bundle/vundle"
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" Bundles {{{1
+
+"Bundle 'L9'
+"Bundle 'FuzzyFinder'
+"
+let g:ctrlp_dotfiles = 0
+Bundle 'kien/ctrlp.vim'
+
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'msanders/snipmate.vim'
+"Bundle 'YankRing.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'mirell/vim-matchit'
+
+"Rails
+Bundle 'tpope/vim-rails.git'
+Bundle 'tpope/vim-haml'
+Bundle 'vim-coffee-script'
+Bundle 'pangloss/vim-javascript'
+Bundle 'skalnik/vim-vroom'
+  " YAML colors
+Bundle 'yaml.vim'
+  " YAML indentation
+Bundle 'avakhov/vim-yaml'
+
+"NodeJS
+Bundle 'digitaltoad/vim-jade'
+Bundle 'wavded/vim-stylus'
+
+" Core {{{1 
+
+syntax enable
+"call pathogen#infect()
+
+" Colors {{{1
+
+if has('gui_running')
+  color molokai-nobold
+else
+  " enable 256 colors in the terminal
+  set t_Co=256
+  color molokai
+  hi Normal ctermbg=none
+  hi NonText ctermbg=none
+  hi Visual ctermbg=238
 endif
 
 " Settings {{{1
@@ -302,3 +337,6 @@ map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 "     set showcmd
 "
 " - to enable autowrap: set formatoptions+=ct
+
+" Post Init {{{1
+filetype plugin indent on
