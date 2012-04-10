@@ -1,1 +1,2 @@
-vimfiles/bundle
+# ignore everything in bundle/ except for "vundle"
+bundle

@@ -9,7 +9,18 @@ echo "=============================="
 ln -sf "$DIR/.vimrc" ~/.vimrc
 ln -sf "$DIR/vimfiles" ~/.vim
 
-bash "$DIR/vimfiles/bundle/powerline/fonts/install.sh"
+echo "=============================="
+echo "Installing Vundle"
+echo "=============================="
+cd ~/.vim
+git clone http://github.com/gmarik/vundle.git bundle/vundle
 
+echo "=============================="
+echo "Installing Powerline fonts"
+echo "=============================="
+bash "$DIR/vimfiles/powerline-fonts/install.sh"
 
-
+echo "=============================="
+echo "Installing Vundle Bundles"
+echo "=============================="
+vim +BundleInstall +qall

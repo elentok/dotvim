@@ -1,3 +1,0 @@
-#!/bin/bash
-
-git subtree add --prefix vimfiles/bundle/nerdtree https://github.com/scrooloose/nerdtree.git master --squash
