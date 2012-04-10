@@ -4,8 +4,7 @@
 set nocompatible " disable vi compatibility
 syntax enable
 call pathogen#infect()
-filetype plugin on
-filetype indent on
+filetype plugin indent on
 
 " Colors {{{1
 
@@ -59,6 +58,7 @@ set number            " show line numbers
 set mouse=a
 set scrolloff=3
 set iskeyword=@,48-57,_,192-255,$,#,-
+set switchbuf=useopen
 
 set undolevels=1000
 set history=300       " remember 300 commands
@@ -143,7 +143,7 @@ command! W :w
 " Key Mappings {{{1
 
 " Basics
-map \\ :nohls<cr>
+nnoremap <cr> :nohls<cr>
 map \s :set spell!<cr>
 map <space> <PageDown>
 map - <PageUp>
@@ -168,6 +168,7 @@ map ,, :FufFile **/<cr>
 map ,t :FufTag<cr>
 map ,R :FufRenewCache<cr>
 map ,b :FufBuffer<cr>
+map ,f :NERDTreeToggle<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
@@ -184,7 +185,7 @@ map <m-s-f10> :simalt ~r<cr>
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
-map \r :!clear; rspec --color --format d spec<cr>
+map \r :!clear; rspec --drb --color --format d spec<cr>
 
  
 " add symbols to the end of the lines:
@@ -225,7 +226,7 @@ augroup Elentok_Misc
   autocmd FileType vim setlocal nobomb
 
   ".vimrc
-  autocmd BufWritePost .vimrc source %
+  "autocmd BufWritePost .vimrc source %
 
   "snippets
   autocmd BufWritePost *.snippets call ReloadAllSnippets()
@@ -293,7 +294,6 @@ let Tlist_WinWidth = 50
 let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
 map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map ;; :NERDTreeToggle<cr>
 
 " Misc Notes {{{1
 "
