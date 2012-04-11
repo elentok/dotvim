@@ -108,7 +108,7 @@ set undolevels=1000
 set history=300       " remember 300 commands
 set visualbell t_vb=
 
-set showmatch                  " briefly jump to matching parenthesis
+"set showmatch                  " briefly jump to matching parenthesis
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set whichwrap=<,>,[,]
 set expandtab
