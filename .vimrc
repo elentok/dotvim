@@ -47,11 +47,20 @@ let g:ctrlp_dotfiles = 0
 Bundle 'kien/ctrlp.vim'
 
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'msanders/snipmate.vim'
+"Bundle 'msanders/snipmate.vim'
 "Bundle 'YankRing.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'mirell/vim-matchit'
+
+"Snipmate (+ dependencies)
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+set <a-j>=j
+set <a-s-j>=J
+let g:snips_trigger_key="<a-j>"
 
 "Rails
 Bundle 'tpope/vim-rails.git'
