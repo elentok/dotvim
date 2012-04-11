@@ -47,20 +47,22 @@ let g:ctrlp_dotfiles = 0
 Bundle 'kien/ctrlp.vim'
 
 Bundle 'Lokaltog/vim-powerline'
-"Bundle 'msanders/snipmate.vim'
 "Bundle 'YankRing.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'mirell/vim-matchit'
+
+" SuperTab
+let g:SuperTabDefaultCompletionType = "context"
+Bundle "ervandew/supertab"
 
 "Snipmate (+ dependencies)
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-set <a-j>=j
-set <a-s-j>=J
-let g:snips_trigger_key="<a-j>"
+"let g:snips_trigger_key="<c-x>,"
+"let g:snips_trigger_key_backwards="<c-x>."
 
 "Rails
 Bundle 'tpope/vim-rails.git'
@@ -241,19 +243,6 @@ map `3 :exec ":normal A <c-v><esc>" . (59 - strlen(getline("."))) . "A-"<cr>
 nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
-
-" Remap the tab key to do autocompletion or indentation depending on the
-" context (from http://www.vim.org/tips/tip.php?tip_id=102)
-function! InsertTabWrapper()
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    else
-        return "\<c-p>"
-    endif
-endfunction
-inoremap <tab> <c-r>=InsertTabWrapper()<cr>
-inoremap <s-tab> <c-n>
 
 " Auto Commands {{{1
 augroup Elentok_Misc
