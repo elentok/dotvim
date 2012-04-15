@@ -45,6 +45,7 @@ Bundle 'gmarik/vundle'
 "
 let g:ctrlp_dotfiles = 0
 Bundle 'kien/ctrlp.vim'
+Bundle 'elentok/run.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
