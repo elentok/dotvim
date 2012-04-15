@@ -166,7 +166,7 @@ let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
 
 " Fuzzyfinder tweaks
-let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules|tmp'
+"let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules|tmp'
 
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
@@ -197,7 +197,6 @@ map <backspace> zc
 imap <c-s> <c-o>:w<cr>
 " super yank (yank to * and + registers)
 vmap \y "*ygv"+y
-vmap \r :SubstituteCase@
 
 imap <f2> <c-o>:set rl!<cr>
 map <f2> :set rl!<cr>
@@ -209,11 +208,6 @@ map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map ,v :tabe $vimrc<cr>
-map ,o :FufFile<cr>
-map ,, :FufFile **/<cr>
-map ,t :FufTag<cr>
-map ,R :FufRenewCache<cr>
-map ,b :FufBuffer<cr>
 map ,f :NERDTreeToggle<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
@@ -231,7 +225,7 @@ map <m-s-f10> :simalt ~r<cr>
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
-map \r :!clear; rspec --drb --color --format d spec<cr>
+command! Rspec :!clear; rspec --drb --color --format d spec<cr>
 
  
 " add symbols to the end of the lines:
