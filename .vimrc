@@ -54,7 +54,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'mirell/vim-matchit'
 
 " SuperTab
-let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabDefaultCompletionType = "context"
 Bundle "ervandew/supertab"
 
 "Snipmate (+ dependencies)
@@ -108,7 +108,7 @@ set iskeyword=@,48-57,_,192-255,$,#,-
 set switchbuf=useopen
 
 " makes sure the active window will always be at least 80 characters
-set winwidth=80
+set winwidth=84
 
 set undolevels=1000
 set history=300       " remember 300 commands
@@ -196,6 +196,7 @@ command! W :w
 nnoremap <cr> :nohls<cr>
 map \s :set spell!<cr>
 map <space> <PageDown>
+vmap <space> 20j
 map - <PageUp>
 map <backspace> zc
 imap <c-s> <c-o>:w<cr>
