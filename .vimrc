@@ -107,6 +107,9 @@ set scrolloff=3
 set iskeyword=@,48-57,_,192-255,$,#,-
 set switchbuf=useopen
 
+" makes sure the active window will always be at least 80 characters
+set winwidth=80
+
 set undolevels=1000
 set history=300       " remember 300 commands
 set visualbell t_vb=
@@ -222,6 +225,12 @@ map <m-space> :simalt ~<cr>
 imap <m-space> <c-o>:simalt ~<cr>
 map <m-f10> :simalt ~x<cr>
 map <m-s-f10> :simalt ~r<cr>
+
+" Window navigation
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
 
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
