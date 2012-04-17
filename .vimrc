@@ -35,7 +35,8 @@ endif
 set nocompatible " disable vi compatibility
 filetype off
 let &rtp .= ',' . $vimfiles . "/bundle/vundle"
-call vundle#rc()
+let bundle_root = $vimfiles . "/bundle"
+call vundle#rc(bundle_root)
 Bundle 'gmarik/vundle'
 
 " Bundles {{{1
