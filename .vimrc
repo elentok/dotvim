@@ -215,6 +215,8 @@ map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map ,v :tabe $vimrc<cr>
 map ,f :NERDTreeToggle<cr>
+map ,b :CtrlPBuffer<cr>
+map ,t :CtrlPTag<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
