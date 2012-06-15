@@ -53,6 +53,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'mirell/vim-matchit'
+Bundle 'tpope/vim-surround'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -69,7 +70,7 @@ Bundle "garbas/vim-snipmate"
 "Rails
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-haml'
-Bundle 'vim-coffee-script'
+Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'skalnik/vim-vroom'
   " YAML colors
@@ -126,7 +127,7 @@ set showbreak=>>
 " Wild mode:
 set wildmenu
 set wildmode=full
-set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj,*/node_modules/*,*/tmp/*
 
 " Formatting
 set formatoptions=qro
@@ -279,6 +280,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
   autocmd BufRead,BufEnter *.json setlocal filetype=javascript
   autocmd BufRead,BufEnter Brewfile setlocal filetype=coffee
+  autocmd BufRead,BufNewFile *.hamlc set ft=haml
 
   " Autocomplete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
@@ -286,6 +288,7 @@ augroup Elentok_Misc
   autocmd FileType html setlocal autoindent omnifunc=htmlcomplete#CompleteTags
   autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
   autocmd FileType smarty setlocal autoindent
+  autocmd FileType java setlocal foldmethod=syntax noexpandtab
 
   " UTF8
   autocmd FileType vim setlocal nobomb
@@ -294,7 +297,7 @@ augroup Elentok_Misc
   "autocmd BufWritePost .vimrc source %
 
   "snippets
-  autocmd BufWritePost *.snippets call ReloadAllSnippets()
+  "autocmd BufWritePost *.snippets call ReloadAllSnippets()
 
   " Home file
   autocmd BufRead,BufEnter home.txt map <buffer> <c-cr> :call HomeExecute()<cr>
