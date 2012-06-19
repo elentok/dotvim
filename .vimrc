@@ -54,6 +54,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'mirell/vim-matchit'
 Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-fugitive'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
