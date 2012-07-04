@@ -118,6 +118,7 @@ set history=300       " remember 300 commands
 set visualbell t_vb=
 
 "set showmatch                  " briefly jump to matching parenthesis
+let loaded_matchparen=1 " do not show highlight matching parenthesis automatically
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set whichwrap=<,>,[,]
 set expandtab
@@ -254,17 +255,8 @@ nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
 
-" Toggle Match Parenthesis
-fun! ToggleMatchParen()
-  if exists("g:loaded_matchparen")
-    NoMatchParen
-  else
-    DoMatchParen
-  endif
-endfun
-
-noremap <F12> :call ToggleMatchParen()<cr>
-inoremap <F12> <c-o>:call ToggleMatchParen()<cr>
+nmap ,c :!cucumber --drb --tags @bob<cr>
+nmap ,C :!cucumber --drb<cr>
 
 " Auto Commands {{{1
 augroup Elentok_Misc
