@@ -71,6 +71,7 @@ Bundle "garbas/vim-snipmate"
 "Rails
 Bundle 'tpope/vim-rails.git'
 Bundle 'tpope/vim-haml'
+Bundle 'elentok/vim-rails-extra'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 Bundle 'skalnik/vim-vroom'
@@ -254,9 +255,6 @@ map `3 :exec ":normal A <c-v><esc>" . (59 - strlen(getline("."))) . "A-"<cr>
 nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
-
-nmap ,c :!cucumber --drb --tags @bob<cr>
-nmap ,C :!cucumber --drb<cr>
 
 " Auto Commands {{{1
 augroup Elentok_Misc
