@@ -362,6 +362,26 @@ let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
 map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
+" Extra: Search google {{{1
+
+func! WebSearch(url)
+  let searchterm = input('Search: ')
+  if searchterm != ''
+    let url = substitute(a:url, "%query%", searchterm, '')
+    call Browse(url)
+  end
+endfunc
+
+func! Browse(url)
+  if has('gui_win32')
+    call system("start " . a:url)
+  else
+    call system("/usr/bin/xdg-open '" . a:url . "' &")
+  end
+endfunc
+
+map ,g :call WebSearch("https://google.com/search?q=%query%")<cr>
+
 " Misc Notes {{{1
 "
 " - for some reason 'showcmd' causes a delay after pressing <Escape> in insert
