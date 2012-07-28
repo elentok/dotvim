@@ -209,8 +209,18 @@ imap <c-s> <c-o>:w<cr>
 " super yank (yank to * and + registers)
 vmap \y "*ygv"+y
 
-imap <f2> <c-o>:set rl!<cr>
-map <f2> :set rl!<cr>
+imap <f2> <c-o>:call ToggleHebrew()<cr>
+map <f2> :call ToggleHebrew()<cr>
+
+func! ToggleHebrew()
+  if &rl
+    set norl
+    set keymap=
+  else
+    set rl
+    set keymap=hebrew
+  end
+endfunc
 
 
 " File navigation
