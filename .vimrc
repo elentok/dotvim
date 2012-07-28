@@ -211,6 +211,7 @@ vmap \y "*ygv"+y
 
 imap <f2> <c-o>:call ToggleHebrew()<cr>
 map <f2> :call ToggleHebrew()<cr>
+imap <c-_> <c-o>:call ToggleHebrew()<cr>
 
 func! ToggleHebrew()
   if &rl
