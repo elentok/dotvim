@@ -377,7 +377,7 @@ map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 " Extra: Search google {{{1
 
 func! WebSearch(url)
-  let searchterm = input('Search: ')
+  let searchterm = input('Search: ', expand("<cword>"))
   if searchterm != ''
     let url = substitute(a:url, "%query%", searchterm, '')
     call Browse(url)
