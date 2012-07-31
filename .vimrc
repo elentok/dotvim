@@ -312,8 +312,14 @@ augroup Elentok_Misc
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \   exe "normal g`\"" |
     \ endif
+
+  autocmd VimEnter * call PostStartupStuff()
 augroup END
 
+func! PostStartupStuff()
+  vmap <tab> >gv
+  vmap <s-tab> <gv
+endfunc
 
 " Extra: JSLint {{{1
 func! JSLint()
