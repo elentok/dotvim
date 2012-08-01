@@ -333,17 +333,17 @@ endfun
 map <Leader>j :call JSLint()<cr>
 
 " Extra: CoffeeScript {{{1
-"func! CoffeeMake()
-  "if expand("%:t") =~ '.js.coffee'
-  "else
-    "silent make
-    "cw
-  "end
-"endfunc
-"augroup Elentok_CoffeeScript
-  "autocmd!
-  "autocmd BufWritePost *.coffee call CoffeeMake()
-"augroup END
+func! CoffeeMake()
+  if getline(1) =~ 'autocompile'
+    silent make
+    redraw!
+    cw
+  end
+endfunc
+augroup Elentok_CoffeeScript
+  autocmd!
+  autocmd BufWritePost *.coffee call CoffeeMake()
+augroup END
 
 " Extra: Folding Expression {{{1
 function! MyFoldingExpr(lnum)
