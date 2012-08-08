@@ -18,7 +18,7 @@ else
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   let $delimiter = '/'
-  let $defaultfont='Monaco\ 10'
+  let $defaultfont='Monaco\ for\ Powerline:h18'
   let $alternatefont='Ubuntu\ Mono\ 13'
   let g:Powerline_symbols='fancy'
   " the 'wildignorecase' option is not available for windows
