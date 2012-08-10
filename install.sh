@@ -11,6 +11,10 @@ if [ "`uname -s`" == "Darwin" ]; then
   cd /usr/bin
   sudo mv vim vim-builtin
   sudo ln -s /usr/local/Cellar/macvim/7.3-64/bin/vim vim
+  echo "=============================="
+  echo "Installing ctags"
+  echo "=============================="
+  brew install ctags
 fi
 
 echo "=============================="

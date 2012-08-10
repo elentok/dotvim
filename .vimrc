@@ -23,7 +23,14 @@ else
   let g:Powerline_symbols='fancy'
   " the 'wildignorecase' option is not available for windows
   set wildignorecase
+  
+  if file_readable('/usr/local/bin/ctags')
+    let g:ctags='/usr/local/bin/ctags'
+  else
+    let g:ctags='ctags'
+  end
 endif
+
 
 exec "set guifont=" . $defaultfont
 
@@ -378,7 +385,7 @@ let Tlist_Ctags_Cmd = "/usr/bin/ctags"
 let Tlist_WinWidth = 50
 let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
-map <F8> :!/usr/bin/ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
 
 " Extra: Search google {{{1
 
