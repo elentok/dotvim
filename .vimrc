@@ -237,6 +237,7 @@ map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map ,v :tabe $vimrc<cr>
+map ,V :tabe $vimfiles/bundle/vim-rails-extra/plugin/rails-extra.vim<cr>
 map ,f :NERDTreeToggle<cr>
 map ,b :CtrlPBuffer<cr>
 map ,t :CtrlPTag<cr>
