@@ -52,6 +52,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'FuzzyFinder'
 "
 let g:ctrlp_dotfiles = 0
+let g:ctrlp_root_markers = ['.ctrlp_root']
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 
