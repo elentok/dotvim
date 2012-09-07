@@ -409,6 +409,13 @@ endfunc
 
 map ,g :call WebSearch("https://google.com/search?q=%query%")<cr>
 
+" Extra: Calc {{{1
+
+if has('python')
+  :command! -nargs=+ Calc :py print <args>
+  :py from math import *
+end
+
 " Misc Notes {{{1
 "
 " - for some reason 'showcmd' causes a delay after pressing <Escape> in insert
