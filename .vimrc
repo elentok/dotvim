@@ -53,7 +53,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'FuzzyFinder'
 "
 let g:ctrlp_dotfiles = 0
-let g:ctrlp_root_markers = ['.ctrlp_root']
+let g:ctrlp_root_markers = ['Gemfile']
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
@@ -63,10 +63,11 @@ Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/nerdcommenter'
-"Bundle 'mirell/vim-matchit'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'danro/rename.vim'
+
+Bundle 'applescript.vim'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -149,7 +150,8 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,*.o,*.obj,*/node_modules/*,*/tmp/*
 
 " Formatting
 set formatoptions=qro
-set fillchars="vert:|"
+"set fillchars=vert:\|,fold:-
+set fillchars=
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -173,6 +175,7 @@ set hlsearch    " highlight search terms
 "set cursorline
 "highlight CursorLine guibg=black cterm=none term=none ctermbg=black
 
+set tags=./tags,tags,./coffee.tags,coffee.tags
 
 " Backup
 set backup writebackup
@@ -188,6 +191,8 @@ let g:xml_syntax_folding=1
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
+let g:rubycomplete_include_object = 1
+let g:rubycomplete_include_objectspace = 1
 
 " Fuzzyfinder tweaks
 "let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules|tmp'
@@ -299,6 +304,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.xaml setlocal syntax=xml
   autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
   autocmd BufRead,BufEnter *.css setlocal foldmethod=marker
+  autocmd BufRead,BufEnter *.applescript set filetype=applescript
 
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
