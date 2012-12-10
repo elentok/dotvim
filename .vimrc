@@ -29,6 +29,7 @@ else
   else
     let g:ctags='ctags'
   end
+
 endif
 
 
@@ -55,6 +56,8 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_root_markers = ['.ctrlp_root']
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
+Bundle 'elentok/plaintasks.vim'
+Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
@@ -100,6 +103,8 @@ syntax enable
 
 " Colors {{{1
 
+set background=dark
+
 if has('gui_running')
   color molokai-nobold
 else
@@ -109,6 +114,7 @@ else
   hi Normal ctermbg=none
   hi NonText ctermbg=none
   hi Visual ctermbg=238
+  hi SpellBad ctermbg=160
 endif
 
 " Settings {{{1
@@ -207,11 +213,11 @@ command! W :w
 " Key Mappings {{{1
 
 " Basics
-nnoremap <cr> :nohls<cr>
+map `` :nohls<cr>
 map \s :set spell!<cr>
-map <space> <PageDown>
+map <space> 20j
 vmap <space> 20j
-map - <PageUp>
+map - 20k
 map <backspace> zc
 imap <c-s> <c-o>:w<cr>
 " super yank (yank to * and + registers)
@@ -236,12 +242,15 @@ endfunc
 map ,t :tabe <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
-map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
+"map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map ,v :tabe $vimrc<cr>
 map ,V :tabe $vimfiles/bundle/vim-rails-extra/plugin/rails-extra.vim<cr>
 map ,f :NERDTreeToggle<cr>
 map ,b :CtrlPBuffer<cr>
 map ,t :CtrlPTag<cr>
+map ,, :CtrlPBufTag<cr>
+map ,m :CtrlPMRUFiles<cr>
+map ,c :CtrlPChange<cr>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
@@ -260,6 +269,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+nnoremap \l :redraw!<cr>
 
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
@@ -276,6 +286,8 @@ map `3 :exec ":normal A <c-v><esc>" . (59 - strlen(getline("."))) . "A-"<cr>
 nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
+
+map \gs :Gstatus<cr>
 
 " Auto Commands {{{1
 augroup Elentok_Misc
@@ -331,15 +343,15 @@ func! PostStartupStuff()
 endfunc
 
 " Extra: JSLint {{{1
-func! JSLint()
-  if has("win32")
-    let jsl = $vimfiles . "/bin/win32/jsl/jsl.exe"
-  else
-    let jsl = $vimfiles . "/bin/linux/jsl/jsl"
-  endif
-  cexpr system(jsl . ' -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
-endfun
-map <Leader>j :call JSLint()<cr>
+"func! JSLint()
+  "if has("win32")
+    "let jsl = $vimfiles . "/bin/win32/jsl/jsl.exe"
+  "else
+    "let jsl = $vimfiles . "/bin/linux/jsl/jsl"
+  "endif
+  "cexpr system(jsl . ' -nofilelisting -nocontext -nologo -nosummary -process "' . expand("%:p") . '"')
+"endfun
+"map <Leader>j :call JSLint()<cr>
 
 " Extra: CoffeeScript {{{1
 func! CoffeeMake()
@@ -353,6 +365,16 @@ augroup Elentok_CoffeeScript
   autocmd!
   autocmd BufWritePost *.coffee call CoffeeMake()
 augroup END
+func! MyCoffeeLint()
+  CoffeeLint
+  if len(getqflist()) > 0
+    copen
+    wincmd w
+  else
+    cclose
+  endif
+endfunc
+map \j :call MyCoffeeLint()<cr>
 
 " Extra: Folding Expression {{{1
 function! MyFoldingExpr(lnum)
@@ -383,11 +405,13 @@ endfunc
 
 
 " Extra: Taglist settings {{{1
-let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
+let Tlist_Ctags_Cmd = "~/projects/tagger/tagger"
 let Tlist_WinWidth = 50
 let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
-map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+"map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
+map <f8> :!~/projects/tagger/tagger<cr>
 
 " Extra: Search google {{{1
 
@@ -426,3 +450,39 @@ end
 
 " Post Init {{{1
 filetype plugin indent on
+
+function! MyCloseDiff()
+  if (&diff == 0 || getbufvar('#', '&diff') == 0)
+        \ && (bufname('%') !~ '^fugitive:' && bufname('#') !~ '^fugitive:')
+    echom "Not in diff view."
+    return
+  endif
+
+  " close current buffer if alternate is not fugitive but current one is
+  while bufname('%') =~ '^fugitive:'
+    bd
+  endwhile
+  "if bufname('#') !~ '^fugitive:' && bufname('%') =~ '^fugitive:'
+    "if bufwinnr("#") == -1
+      "b #
+      "bd #
+    "else
+      "bd
+    "endif
+  "else
+    "bd #
+  "endif
+endfunction
+nnoremap <Leader>gD :call MyCloseDiff()<cr>
+
+" Extra: Ack {{{1
+
+function! Ack(text)
+  let cmd = "ack --no-group --no-color " . a:text . " > /tmp/ack-output"
+  call system(cmd)
+  lget /tmp/ack-output
+  lw
+endfunc
+
+:command! -nargs=+ Ack :call Ack("<args>")
+
