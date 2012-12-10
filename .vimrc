@@ -57,6 +57,7 @@ let g:ctrlp_root_markers = ['Gemfile']
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
+Bundle 'elentok/alternate-spec.vim'
 Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'Lokaltog/vim-powerline'
@@ -484,10 +485,20 @@ nnoremap <Leader>gD :call MyCloseDiff()<cr>
 " Extra: Ack {{{1
 
 function! Ack(text)
+  call AddOriginalEfmIfMissing()
   let cmd = "ack --no-group --no-color " . a:text . " > /tmp/ack-output"
   call system(cmd)
   lget /tmp/ack-output
   lw
+endfunc
+
+let g:original_efm=&efm
+
+function! AddOriginalEfmIfMissing()
+  " this fixes a problem where custom errorformat mess up Ack
+  if stridx(&efm, g:original_efm) == -1
+    let &efm = &efm . g:original_efm
+  end
 endfunc
 
 :command! -nargs=+ Ack :call Ack("<args>")
