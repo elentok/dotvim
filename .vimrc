@@ -486,7 +486,7 @@ nnoremap <Leader>gD :call MyCloseDiff()<cr>
 
 function! Ack(text)
   call AddOriginalEfmIfMissing()
-  let cmd = "ack --no-group --no-color " . a:text . " > /tmp/ack-output"
+  let cmd = "ack --nogroup --nocolor --nopager --flush " . a:text . " > /tmp/ack-output"
   call system(cmd)
   lget /tmp/ack-output
   lw
