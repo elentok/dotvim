@@ -219,7 +219,6 @@ command! W :w
 " Key Mappings {{{1
 
 " Basics
-map `` :nohls<cr>
 map \s :set spell!<cr>
 map <space> 20j
 vmap <space> 20j
@@ -348,6 +347,22 @@ func! PostStartupStuff()
   vmap <tab> >gv
   vmap <s-tab> <gv
 endfunc
+
+" Map <cr> to hide search highlight {{{1
+
+map <cr> :nohls<cr>
+
+" remap <cr> in quickfix buffers
+func! RemapCrInQuickFixBuffers()
+  if &buftype == 'quickfix'
+    nnoremap <buffer> <cr> <cr>
+  end
+endfunc
+
+augroup RemapCrInQuickFixBuffers
+  autocmd!
+  autocmd BufRead * call RemapCrInQuickFixBuffers()
+augroup END
 
 " Extra: JSLint {{{1
 "func! JSLint()
