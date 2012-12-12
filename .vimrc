@@ -300,7 +300,7 @@ augroup Elentok_Misc
   autocmd!
   autocmd FileType xml setlocal foldmethod=syntax
   autocmd VimEnter * set t_vb=
-  autocmd BufRead,BufEnter *.txt setlocal syntax=dtxt
+  "autocmd BufRead,BufEnter *.txt setlocal syntax=dtxt
   autocmd BufRead,BufEnter *.autoSetup setlocal syntax=xml
   autocmd BufRead,BufEnter *.xaml setlocal syntax=xml
   autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
