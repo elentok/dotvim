@@ -253,7 +253,7 @@ map ,V :tabe $vimfiles/bundle/vim-rails-extra/plugin/rails-extra.vim<cr>
 map ,f :NERDTreeToggle<cr>
 map ,b :CtrlPBuffer<cr>
 map ,t :CtrlPTag<cr>
-map ,, :CtrlPBufTag<cr>
+map `` :CtrlPBufTag<cr>
 map ,m :CtrlPMRUFiles<cr>
 map ,c :CtrlPChange<cr>
 
@@ -433,7 +433,7 @@ let Tlist_WinWidth = 50
 let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
 "map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map <f8> :!~/projects/tagger/tagger<cr>
+map <f8> :!~/projects/jstagger/tagger<cr>
 
 " Extra: Search google {{{1
 
