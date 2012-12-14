@@ -517,4 +517,6 @@ function! AddOriginalEfmIfMissing()
 endfunc
 
 :command! -nargs=+ Ack :call Ack("<args>")
+nnoremap \a :Ack <c-r>=expand("<cword>")<cr><cr>
+vnoremap \a "9y:Ack '<c-r>9'<cr>
 
