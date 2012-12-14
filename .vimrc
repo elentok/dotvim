@@ -428,12 +428,12 @@ endfunc
 
 " Extra: Taglist settings {{{1
 "let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_Ctags_Cmd = "~/projects/tagger/tagger"
+let Tlist_Ctags_Cmd = "~/projects/supertagger/supertagger"
 let Tlist_WinWidth = 50
 let Tlist_GainFocus_On_ToggleOpen = 1
 map <F3> :TlistToggle<cr>
 "map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map <f8> :!~/projects/jstagger/tagger<cr>
+map <f8> :!~/projects/supertagger/supertagger<cr>
 
 " Extra: Search google {{{1
 
