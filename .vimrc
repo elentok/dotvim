@@ -18,7 +18,7 @@ else
   let $vimfiles=expand('~/.vim')
   let $session=expand('~/.session.vim')
   let $delimiter = '/'
-  let $defaultfont='Monaco\ for\ Powerline:h18'
+  let $defaultfont='Monaco\ for\ Powerline:h13'
   let $alternatefont='Ubuntu\ Mono\ 13'
   let g:Powerline_symbols='fancy'
   " the 'wildignorecase' option is not available for windows
@@ -58,7 +58,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'elentok/alternate-spec.vim'
-Bundle 'wookiehangover/jshint.vim'
+"Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
@@ -69,6 +69,9 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'danro/rename.vim'
 
 Bundle 'applescript.vim'
+
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -88,6 +91,8 @@ Bundle 'tpope/vim-haml'
 Bundle 'elentok/vim-rails-extra'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
+
+let g:vroom_spec_command = 'sp '
 Bundle 'skalnik/vim-vroom'
   " YAML colors
 Bundle 'yaml.vim'
@@ -251,6 +256,7 @@ map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 map ,v :tabe $vimrc<cr>
 map ,V :tabe $vimfiles/bundle/vim-rails-extra/plugin/rails-extra.vim<cr>
 map ,f :NERDTreeToggle<cr>
+map ,F :NERDTreeFind<cr>
 map ,b :CtrlPBuffer<cr>
 map ,t :CtrlPTag<cr>
 map `` :CtrlPBufTag<cr>
