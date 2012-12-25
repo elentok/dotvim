@@ -113,20 +113,22 @@ syntax enable
 set background=dark
 
 if has('gui_running')
-  color molokai-nobold
+  "color molokai-nobold
+  color ir_black
 else
   " enable 256 colors in the terminal
   set t_Co=256
-  color molokai
-  hi Normal ctermbg=none
-  hi NonText ctermbg=none
-  hi Visual ctermbg=238
-  hi SpellBad ctermbg=160
+  "color molokai
+  color ir_black
+  "hi Normal ctermbg=none
+  "hi NonText ctermbg=none
+  "hi Visual ctermbg=238
+  "hi SpellBad ctermbg=160
 endif
 
 " Settings {{{1
 behave mswin
-set guioptions=egrLt
+set guioptions=gt " use 'e' for gui tabs
 set number            " show line numbers
 set mouse=a
 set scrolloff=3
@@ -280,7 +282,7 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-nnoremap \l :redraw!<cr>
+nnoremap \l :silent !tput clear<cr>:redraw!<cr>
 
 " select a link and press "gx"
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
