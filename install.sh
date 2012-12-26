@@ -10,7 +10,8 @@ if [ "`uname -s`" == "Darwin" ]; then
   brew install macvim --with-cscope --override-system-vim --with-lua
   cd /usr/bin
   sudo mv vim vim-builtin
-  sudo ln -s /usr/local/Cellar/macvim/7.3-64/bin/vim vim
+  latest_vim=`/bin/ls -1 -d /usr/local/Cellar/macvim/7.* | tail -1`
+  sudo ln -s $latest_vim/bin/vim vim
   echo "=============================="
   echo "Installing ctags"
   echo "=============================="
