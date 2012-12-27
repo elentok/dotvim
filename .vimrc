@@ -237,6 +237,8 @@ command! W :w
 
 " Key Mappings {{{1
 
+map `b :!scripts/build.sh<cr>
+
 " Basics
 map \s :set spell!<cr>
 map <space> 20j
