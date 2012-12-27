@@ -54,11 +54,17 @@ Bundle 'gmarik/vundle'
 "
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_root_markers = ['Gemfile']
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_by_filename = 1
+"let g:ctrlp_buftag_ctags_bin = 'supertagger'
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'elentok/alternate-spec.vim'
 "Bundle 'wookiehangover/jshint.vim'
+
+Bundle 'sickill/vim-monokai'
+"Bundle 'guns/xterm-color-table.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
@@ -92,8 +98,11 @@ Bundle 'elentok/vim-rails-extra'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 
-let g:vroom_spec_command = 'sp '
-Bundle 'skalnik/vim-vroom'
+Bundle 'rson/vim-conque'
+let g:ruby_conque_rspec_runner='sp'
+Bundle 'skwp/vim-ruby-conque'
+"let g:vroom_spec_command = 'sp '
+"Bundle 'skalnik/vim-vroom'
   " YAML colors
 Bundle 'yaml.vim'
   " YAML indentation
@@ -113,13 +122,16 @@ syntax enable
 set background=dark
 
 if has('gui_running')
-  "color molokai-nobold
   color ir_black
+  "color Monokai
+  hi Normal guibg=#121212
 else
   " enable 256 colors in the terminal
   set t_Co=256
   "color molokai
-  color ir_black
+  color Monokai
+  hi Normal ctermbg=0
+  "color ir_black
   "hi Normal ctermbg=none
   "hi NonText ctermbg=none
   "hi Visual ctermbg=238
@@ -288,6 +300,10 @@ nnoremap \l :silent !tput clear<cr>:redraw!<cr>
 vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
 command! Rspec :!clear; rspec --drb --color --format d spec<cr>
+
+map \r :RunRspecCurrentFileConque<cr>
+map \R :RunRspecCurrentLineConque<cr>
+map \\ :RunLastConqueCommand<cr>
 
  
 " add symbols to the end of the lines:
