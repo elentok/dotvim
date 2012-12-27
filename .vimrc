@@ -64,7 +64,7 @@ Bundle 'elentok/alternate-spec.vim'
 "Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'sickill/vim-monokai'
-"Bundle 'guns/xterm-color-table.vim'
+Bundle 'guns/xterm-color-table.vim'
 
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
@@ -130,7 +130,9 @@ else
   set t_Co=256
   "color molokai
   color Monokai
-  hi Normal ctermbg=0
+  hi Normal ctermbg=233
+  hi NonText ctermbg=232
+  hi Folded ctermbg=232
   "color ir_black
   "hi Normal ctermbg=none
   "hi NonText ctermbg=none
