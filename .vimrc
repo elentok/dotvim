@@ -344,6 +344,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
   autocmd BufRead,BufEnter *.css setlocal foldmethod=marker
   autocmd BufRead,BufEnter *.applescript set filetype=applescript
+  autocmd BufRead,BufEnter *.rxls setlocal filetype=ruby
 
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
@@ -463,16 +464,6 @@ func! HomeExecute()
     execute 'e ' . line
   endif
 endfunc
-
-
-" Extra: Taglist settings {{{1
-"let Tlist_Ctags_Cmd = "/usr/bin/ctags"
-let Tlist_Ctags_Cmd = "~/projects/supertagger/supertagger"
-let Tlist_WinWidth = 50
-let Tlist_GainFocus_On_ToggleOpen = 1
-map <F3> :TlistToggle<cr>
-"map <F8> :!<c-r>=g:ctags<cr> -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-map <f8> :!~/projects/supertagger/supertagger<cr>
 
 " Extra: Search google {{{1
 
