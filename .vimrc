@@ -260,6 +260,8 @@ imap <f2> <c-o>:call ToggleHebrew()<cr>
 map <f2> :call ToggleHebrew()<cr>
 imap <c-_> <c-o>:call ToggleHebrew()<cr>
 
+map <F3> :TagbarToggle<cr>
+
 func! ToggleHebrew()
   if &rl
     set norl
@@ -285,6 +287,10 @@ map ,t :CtrlPTag<cr>
 map `` :CtrlPBufTag<cr>
 map ,m :CtrlPMRUFiles<cr>
 map ,c :CtrlPChange<cr>
+map \z :ConqueTermSplit zsh<cr>
+
+nnoremap <silent> <Leader>] :exe "resize " . (&lines * 2/3)<CR>
+nnoremap <silent> <Leader>[ :exe "resize " . (&lines * 1/3)<CR>
 
 map <c-f12> :setlocal foldexpr=MyFoldingExpr(v:lnum)<cr>:setlocal foldmethod=expr<cr>
 map <c-s-f12> :setlocal foldmethod=manual<cr>zE
