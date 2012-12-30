@@ -56,11 +56,16 @@ let g:ctrlp_dotfiles = 0
 let g:ctrlp_root_markers = ['Gemfile']
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_by_filename = 1
-"let g:ctrlp_buftag_ctags_bin = 'supertagger'
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/](tmp)$',
+  \ }
 Bundle 'kien/ctrlp.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'elentok/alternate-spec.vim'
+Bundle 'elentok/supertagger'
+
+Bundle 'majutsushi/tagbar'
 "Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'sickill/vim-monokai'
