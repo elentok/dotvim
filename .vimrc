@@ -67,6 +67,8 @@ Bundle 'elentok/supertagger'
 
 Bundle 'majutsushi/tagbar'
 Bundle 'benmills/vimux'
+let g:ScreenImpl = 'Tmux'
+Bundle 'ervandew/screen'
 "Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'sickill/vim-monokai'
