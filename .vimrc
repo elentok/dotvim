@@ -66,6 +66,7 @@ Bundle 'elentok/alternate-spec.vim'
 Bundle 'elentok/supertagger'
 
 Bundle 'majutsushi/tagbar'
+Bundle 'benmills/vimux'
 "Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'sickill/vim-monokai'
