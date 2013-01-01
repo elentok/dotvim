@@ -66,6 +66,9 @@ Bundle 'elentok/alternate-spec.vim'
 Bundle 'elentok/supertagger'
 
 Bundle 'majutsushi/tagbar'
+
+let g:VimuxOrientation = "h"
+let g:VimuxHeight = "40"
 Bundle 'benmills/vimux'
 let g:ScreenImpl = 'Tmux'
 Bundle 'ervandew/screen'
@@ -319,9 +322,9 @@ vmap gx "xy:call netrw#NetrwBrowseX(@x, 0)<cr>
 
 command! Rspec :!clear; rspec --drb --color --format d spec<cr>
 
-map \r :RunRspecCurrentFileConque<cr>
-map \R :RunRspecCurrentLineConque<cr>
-map \\ :RunLastConqueCommand<cr>
+"map \r :RunRspecCurrentFileConque<cr>
+"map \R :RunRspecCurrentLineConque<cr>
+"map \\ :RunLastConqueCommand<cr>
 
  
 " add symbols to the end of the lines:
@@ -553,3 +556,10 @@ endfunc
 nnoremap \a :Ack <c-r>=expand("<cword>")<cr><cr>
 vnoremap \a "9y:Ack '<c-r>9'<cr>
 
+" Extra: Vimux-RailsTests {{{1
+
+command! RailsConsole :call VimuxRunCommand('RAILS_ENV=test rails c')
+command! W :w | :call VimuxRunCommand("load '" . @% ."';")
+map \r :call VimuxRunCommand('rspec ' . @%)<cr>
+map \R :call VimuxRunCommand('rspec ' . @% . ':' . line('.'))<cr>
+map \\ :VimuxRunLastCommand<cr>
