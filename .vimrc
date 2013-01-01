@@ -109,11 +109,15 @@ Bundle 'elentok/vim-rails-extra'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'pangloss/vim-javascript'
 
+"Bundle 'kikijump/tslime.vim'
+
 Bundle 'rson/vim-conque'
-let g:ruby_conque_rspec_runner='sp'
-Bundle 'skwp/vim-ruby-conque'
-"let g:vroom_spec_command = 'sp '
-"Bundle 'skalnik/vim-vroom'
+"let g:ruby_conque_rspec_runner='sp'
+"Bundle 'skwp/vim-ruby-conque'
+let g:vroom_use_vimux = 1
+let g:vroom_spec_command = 'sp '
+Bundle 'skalnik/vim-vroom'
+
   " YAML colors
 Bundle 'yaml.vim'
   " YAML indentation
@@ -560,6 +564,6 @@ vnoremap \a "9y:Ack '<c-r>9'<cr>
 
 command! RailsConsole :call VimuxRunCommand('RAILS_ENV=test rails c')
 command! W :w | :call VimuxRunCommand("load '" . @% ."';")
-map \r :call VimuxRunCommand('rspec ' . @%)<cr>
-map \R :call VimuxRunCommand('rspec ' . @% . ':' . line('.'))<cr>
+map \R :call VimuxRunCommand('rspec ' . @%)<cr>
+map \r :call VimuxRunCommand('rspec ' . @% . ':' . line('.'))<cr>
 map \\ :VimuxRunLastCommand<cr>
