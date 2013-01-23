@@ -60,19 +60,21 @@ let g:ctrlp_custom_ignore = {
   \ 'dir': '\v[\/](tmp)$',
   \ }
 Bundle 'kien/ctrlp.vim'
+
+let g:run_with_vimux=1
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'elentok/alternate-spec.vim'
 Bundle 'elentok/supertagger'
-
-Bundle 'majutsushi/tagbar'
+Bundle 'elentok/spec-runner.vim'
+let g:spec_runner_use_vimux=1
+let g:user_spec_runners = {'ruby': { 'command': 'sp {file}' }}
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
 Bundle 'benmills/vimux'
 let g:ScreenImpl = 'Tmux'
 Bundle 'ervandew/screen'
-"Bundle 'wookiehangover/jshint.vim'
 
 Bundle 'sickill/vim-monokai'
 Bundle 'guns/xterm-color-table.vim'
@@ -80,15 +82,18 @@ Bundle 'guns/xterm-color-table.vim'
 Bundle 'Lokaltog/vim-powerline'
 "Bundle 'YankRing.vim'
 Bundle 'scrooloose/nerdtree'
+let NERDTreeIgnore=['\.zeus\.sock$', '\~$']
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-unimpaired'
 Bundle 'danro/rename.vim'
 
 Bundle 'applescript.vim'
 
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
+
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -112,11 +117,6 @@ Bundle 'pangloss/vim-javascript'
 "Bundle 'kikijump/tslime.vim'
 
 Bundle 'rson/vim-conque'
-"let g:ruby_conque_rspec_runner='sp'
-"Bundle 'skwp/vim-ruby-conque'
-let g:vroom_use_vimux = 1
-let g:vroom_spec_command = 'sp '
-Bundle 'skalnik/vim-vroom'
 
   " YAML colors
 Bundle 'yaml.vim'
@@ -126,6 +126,8 @@ Bundle 'avakhov/vim-yaml'
 "NodeJS
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
+
+Bundle 'scrooloose/syntastic.git'
 
 " Core {{{1 
 
@@ -256,6 +258,10 @@ command! W :w
 
 map `b :!scripts/build.sh<cr>
 
+vnoremap ,/ "9y/<c-r>9<cr>
+vnoremap ,! "9y:<c-r>9<cr>
+
+
 " Basics
 map \s :set spell!<cr>
 map <space> 20j
@@ -286,6 +292,7 @@ endfunc
 " File navigation
 map ,t :tabe <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,e :e <C-R>=expand("%:p:h") . $delimiter <cr>
+map ,E :read <C-R>=expand("%:p:h") . $delimiter <cr>
 map ,d :cd <C-R>=expand("%:p:h")<cr><cr>
 "map ,c :silent !start cmd.exe /k cd /d "<C-R>=expand("%:p:h")<cr>"<cr>
 map ,v :tabe $vimrc<cr>
@@ -353,6 +360,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.xaml setlocal syntax=xml
   autocmd BufRead,BufEnter *.py setlocal ts=4 softtabstop=4 shiftwidth=4
   autocmd BufRead,BufEnter *.css setlocal foldmethod=marker
+  autocmd BufRead,BufEnter *.scss setlocal foldmethod=marker
   autocmd BufRead,BufEnter *.applescript set filetype=applescript
   autocmd BufRead,BufEnter *.rxls setlocal filetype=ruby
 
@@ -509,6 +517,7 @@ end
 "     set showcmd
 "
 " - to enable autowrap: set formatoptions+=ct
+" - show the ascii value of a char: "ga"
 
 " Post Init {{{1
 filetype plugin indent on
@@ -562,8 +571,7 @@ vnoremap \a "9y:Ack '<c-r>9'<cr>
 
 " Extra: Vimux-RailsTests {{{1
 
-command! RailsConsole :call VimuxRunCommand('RAILS_ENV=test rails c')
-command! W :w | :call VimuxRunCommand("load '" . @% ."';")
-map \R :call VimuxRunCommand('rspec ' . @%)<cr>
-map \r :call VimuxRunCommand('rspec ' . @% . ':' . line('.'))<cr>
-map \\ :VimuxRunLastCommand<cr>
+"command! RailsConsole :call VimuxRunCommand('RAILS_ENV=test rails c')
+"command! W :w | :call VimuxRunCommand("load '" . @% ."';")
+"map \R :call VimuxRunCommand(".clear\nrspec " . @%)<cr>
+"map \r :call VimuxRunCommand(".clear\nrspec " . @% . ':' . line('.'))<cr>
