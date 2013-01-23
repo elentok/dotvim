@@ -109,9 +109,6 @@ syn case ignore
 syn match dtodoPending "\[ \].*"
 syn match dtodoComplete "\[v\].*"
 
-syn match dtxtHeader1 "^\*[^\*].*$"
-syn match dtxtHeader2 "^\*\*[^\*].*$"
-syn match dtxtHeader3 "^\*\*\*[^\*].*$"
 syn match dtxtString "\"[^\"]*\""
 syn match dtxtUrl "\(http\|ftp\)://[^ ]*"
 syn match dtxtUri "\\\\[^ ]*"
@@ -121,9 +118,18 @@ syn match dtxtCurlyBraces "{[^}]*}"
 syn match dtxtTriangleBraces "<[^>]*>"
 "syn match dtxtSquareBraces "\[[^\]]*\]"
 
-hi def link dtxtHeader1 Statement
-hi def link dtxtHeader2 Function
-hi def link dtxtHeader3 Function
+syn match dtxtHeader1 "^\*.*$"
+syn match dtxtHeader2 "^  \*.*$"
+syn match dtxtHeader3 "^    \*.*$"
+syn match dtxtSeparator "====*"
+hi def link dtxtHeader1 Function
+hi def link dtxtHeader2 Directory
+hi def link dtxtHeader3 Directory
+hi def link dtxtSeparator Function
+
+syn match dtxtBullet "^ *-"
+hi def link dtxtBullet Function
+
 hi def link dtxtString String
 hi def link dtxtUrl Underlined
 hi def link dtxtUri Underlined
@@ -136,11 +142,16 @@ hi def link dtxtTriangleBraces String
 hi def link dtodoPending WarningMsg
 hi def link dtodoComplete Comment
 
-" todo.txt
-syn match todotxtContext "@[^ ]*"
-syn match todotxtProject "+[^ ]*"
+"" todo.txt
+"syn match todotxtContext "@[^ ]*"
+"syn match todotxtProject "+[^ ]*"
 
-hi def link todotxtContext Define
-hi def link todotxtProject Include
+"hi def link todotxtContext Define
+"hi def link todotxtProject Include
 
+syn match dtxtCommand "`[^`]*`"
+hi def link dtxtCommand Question
+
+syn match dtxtComment "(.*)"
+hi def link dtxtComment Comment
 

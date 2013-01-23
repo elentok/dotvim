@@ -147,9 +147,14 @@ else
   set t_Co=256
   "color molokai
   color Monokai
-  hi Normal ctermbg=233
-  hi NonText ctermbg=232
-  hi Folded ctermbg=232
+  "hi Normal ctermbg=233
+  "hi NonText ctermbg=232
+  "hi Folded ctermbg=232
+  
+  hi Normal ctermbg=None
+  hi Folded ctermbg=233
+  hi NonText ctermbg=None
+
   "color ir_black
   "hi Normal ctermbg=none
   "hi NonText ctermbg=none
@@ -235,6 +240,10 @@ let g:rubycomplete_include_objectspace = 1
 
 " Fuzzyfinder tweaks
 "let g:fuf_file_exclude='\v\~$|\.(o|exe|dll|bak|orig|sw[po])$|(^|[/\\])\.(hg|git|bzr)($|[/\\])|node_modules|tmp'
+
+"if $TMUX == ''
+  "set clipboard+=unnamed
+"endif
 
 " Settings: Unicode:{{{1
 " With the following settings Vim's UTF-8 behaves as follows:
@@ -345,10 +354,36 @@ map `3 :exec ":normal A <c-v><esc>" . (59 - strlen(getline("."))) . "A-"<cr>
  
 " run the selected text:
 nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
-vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
+"vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
 
 map \gs :Gstatus<cr>
+map \gd :call GitDiff()<cr>
+
+function! GitDiff()
+  let filename = buffer_name('%')
+  if &filetype == 'gitcommit'
+    let filename = expand("<cWORD>")
+  endif
+  exec "ConqueTermSplit git diff --color " . filename
+  nnoremap q :bd!<cr>
+  inoremap q <esc>:bd!<cr>
+endfunc
+
+function! CloseDiff()
+  let diff_buffers = []
+  for buffer_number in tabpagebuflist()
+    let win_number = bufwinnr(buffer_number)
+    if getwinvar(win_number, '&diff') == 1
+      call add(diff_buffers, buffer_number)
+    endif
+  endfor
+  diffoff!
+  for buffer_number in diff_buffers
+    exec ":bd! " . buffer_number
+  endfor
+  return diff_buffers
+endfunc
 
 " Auto Commands {{{1
 augroup Elentok_Misc
