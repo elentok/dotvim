@@ -1,7 +1,19 @@
 " vim: foldmethod=marker
 " OS Specific {{{1
 
-if has('gui_win32')
+function! IdentifyOS()
+  if system('uname -s') == "Darwin\n"
+    return 'mac'
+  elseif has('gui_win32')
+    return 'windows'
+  else
+    return 'linux'
+  end
+endfunc
+
+let g:os = IdentifyOS()
+
+if g:os == 'windows'
   let $temp_dir=$TEMP . '\\vim'
   let $vimrc=$VIMRUNTIME . '/../.vimrc'
   let $vimfiles=$VIMRUNTIME . '/../vimfiles'
@@ -12,6 +24,7 @@ if has('gui_win32')
   let g:ruby_path='C:/ruby187'
   set grepprg="findstr /nI"
   let g:Powerline_symbols='compatible'
+  let $opener='start'
 else
   let $temp_dir='/tmp/vim-' . $USER
   let $vimrc=expand('~/.vimrc')
@@ -28,6 +41,11 @@ else
     let g:ctags='/usr/local/bin/ctags'
   else
     let g:ctags='ctags'
+  end
+
+  let $opener='open'
+  if g:os == 'linux'
+    let $opener='/usr/bin/xdg-open'
   end
 
 endif
@@ -532,7 +550,7 @@ func! Browse(url)
   if has('gui_win32')
     call system("start " . a:url)
   else
-    call system("/usr/bin/xdg-open '" . a:url . "' &")
+    call system($opener . " '" . a:url . "' &")
   end
 endfunc
 
