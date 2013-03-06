@@ -71,7 +71,7 @@ Bundle 'gmarik/vundle'
 "Bundle 'FuzzyFinder'
 "
 let g:ctrlp_dotfiles = 0
-let g:ctrlp_root_markers = ['Gemfile']
+let g:ctrlp_root_markers = ['Gemfile', 'package.json', '.git']
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_by_filename = 1
 let g:ctrlp_custom_ignore = {
@@ -80,13 +80,19 @@ let g:ctrlp_custom_ignore = {
 Bundle 'kien/ctrlp.vim'
 
 let g:run_with_vimux=1
+Bundle 'elentok/mailr.vim'
 Bundle 'elentok/run.vim'
 Bundle 'elentok/plaintasks.vim'
 Bundle 'elentok/alternate-spec.vim'
 Bundle 'elentok/supertagger'
+map <f8> :SuperTagger<cr>
+
 Bundle 'elentok/spec-runner.vim'
 let g:spec_runner_use_vimux=1
-let g:user_spec_runners = {'ruby': { 'command': 'sp {file}' }}
+let g:user_spec_runners = {
+  \ 'ruby': { 'command': 'sp {file}' },
+  \ 'java': { 'command': 'make test' }
+  \}
 
 let g:VimuxOrientation = "h"
 let g:VimuxHeight = "40"
@@ -112,6 +118,7 @@ Bundle 'applescript.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
+Bundle 'Valloric/YouCompleteMe'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -122,8 +129,8 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-"let g:snips_trigger_key="<c-x>,"
-"let g:snips_trigger_key_backwards="<c-x>."
+let g:snips_trigger_key="<c-x>,"
+let g:snips_trigger_key_backwards="<c-x>."
 
 "Rails
 Bundle 'tpope/vim-rails.git'
@@ -141,11 +148,18 @@ Bundle 'yaml.vim'
   " YAML indentation
 Bundle 'avakhov/vim-yaml'
 
+Bundle 'groenewege/vim-less'
+
 "NodeJS
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
 
 Bundle 'scrooloose/syntastic.git'
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+Bundle 'mileszs/ack.vim'
+
+Bundle 'airblade/vim-gitgutter'
 
 " Core {{{1 
 
@@ -416,6 +430,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.scss setlocal foldmethod=marker
   autocmd BufRead,BufEnter *.applescript set filetype=applescript
   autocmd BufRead,BufEnter *.rxls setlocal filetype=ruby
+  autocmd BufRead,BufEnter *.md setlocal filetype=markdown
 
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
@@ -601,26 +616,31 @@ nnoremap <Leader>gD :call MyCloseDiff()<cr>
 
 " Extra: Ack {{{1
 
-function! Ack(text)
-  call AddOriginalEfmIfMissing()
-  let cmd = "ack --nogroup --nocolor --nopager --flush " . a:text . " > /tmp/ack-output"
-  call system(cmd)
-  lget /tmp/ack-output
-  lw
-endfunc
+"function! Ack(text)
+  "call AddOriginalEfmIfMissing()
+  "let cmd = "ack --nogroup --nocolor --column --nopager --flush " . a:text . " > /tmp/ack-output"
+  ""let cmd = "ag --nogroup --nocolor --column --nopager " . a:text . " > /tmp/ack-output"
+  "call system(cmd)
+  "lget /tmp/ack-output
+  "lw
+"endfunc
 
-let g:original_efm=&efm
+"let g:original_efm=&efm
 
-function! AddOriginalEfmIfMissing()
-  " this fixes a problem where custom errorformat mess up Ack
-  if stridx(&efm, g:original_efm) == -1
-    let &efm = &efm . g:original_efm
-  end
-endfunc
+"function! AddOriginalEfmIfMissing()
+  "" this fixes a problem where custom errorformat mess up Ack
+  "if stridx(&efm, g:original_efm) == -1
+    "let &efm = &efm . g:original_efm
+  "end
+"endfunc
 
-:command! -nargs=+ Ack :call Ack("<args>")
-nnoremap \a :Ack <c-r>=expand("<cword>")<cr><cr>
-vnoremap \a "9y:Ack '<c-r>9'<cr>
+":command! -nargs=+ Ack :call Ack("<args>")
+nnoremap \a :Ack! <c-r>=expand("<cword>")<cr><cr>
+vnoremap \a "9y:Ack! '<c-r>9'<cr>
+
+"command! -nargs=+ Ag Ack! "<nargs>"
+
+cnoreabbrev Ag Ack!
 
 " Extra: Vimux-RailsTests {{{1
 
