@@ -118,7 +118,7 @@ Bundle 'applescript.vim'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 
 " SuperTab
 "let g:SuperTabDefaultCompletionType = "context"
@@ -129,8 +129,8 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
-let g:snips_trigger_key="<c-x>,"
-let g:snips_trigger_key_backwards="<c-x>."
+"let g:snips_trigger_key="<c-x>,"
+"let g:snips_trigger_key_backwards="<c-x>."
 
 "Rails
 Bundle 'tpope/vim-rails.git'
@@ -160,6 +160,11 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 Bundle 'mileszs/ack.vim'
 
 Bundle 'airblade/vim-gitgutter'
+"Bundle 'jnwhiteh/vim-golang'
+"Bundle 'go-vim'
+"set rtp+=$GOROOT/misc/vim
+"set rtp+=/usr/local/Cellar/go/1.0.3/misc/vim
+"Bundle 'nsf/gocode', {'rtp': 'vim/'}
 
 " Core {{{1 
 
@@ -437,6 +442,7 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.json setlocal filetype=javascript
   autocmd BufRead,BufEnter Brewfile setlocal filetype=coffee
   autocmd BufRead,BufNewFile *.hamlc set ft=haml
+  autocmd BufRead,BufNewFile *.hamljs set ft=haml
 
   " Autocomplete
   autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
