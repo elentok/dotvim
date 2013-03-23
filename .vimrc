@@ -648,3 +648,13 @@ cnoreabbrev Ag Ack!
 "command! W :w | :call VimuxRunCommand("load '" . @% ."';")
 "map \R :call VimuxRunCommand(".clear\nrspec " . @%)<cr>
 "map \r :call VimuxRunCommand(".clear\nrspec " . @% . ':' . line('.'))<cr>
+
+" NERDTree fix
+function! FixNERDTreeWidth()
+  let winwidth = winwidth(".")
+  if winwidth < g:NERDTreeWinSize
+    exec("silent vertical resize " . g:NERDTreeWinSize)
+  endif
+endfunc
+
+autocmd BufEnter * if exists("b:NERDTreeType") | call FixNERDTreeWidth() | endif
