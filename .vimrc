@@ -112,6 +112,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'danro/rename.vim'
+Bundle 'godlygeek/tabular'
 
 Bundle 'applescript.vim'
 
@@ -141,7 +142,7 @@ Bundle 'pangloss/vim-javascript'
 
 "Bundle 'kikijump/tslime.vim'
 
-Bundle 'rson/vim-conque'
+"Bundle 'rson/vim-conque'
 
   " YAML colors
 Bundle 'yaml.vim'
@@ -160,6 +161,8 @@ let g:ackprg = 'ag --nogroup --nocolor --column'
 Bundle 'mileszs/ack.vim'
 
 Bundle 'airblade/vim-gitgutter'
+Bundle 'rodjek/vim-puppet'
+
 "Bundle 'jnwhiteh/vim-golang'
 "Bundle 'go-vim'
 "set rtp+=$GOROOT/misc/vim
@@ -394,6 +397,10 @@ nmap <c-s-cr> 0v$"xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "vmap <c-cr> "xy:silent exec ":!cmd /c start \"VimCmd\" " . @x<cr>
 "nmap <c-cr> :silent exec ":!start cmd /k " . expand("<cword>")<cr>
 
+" Tabular
+noremap \t= :Tab /=<cr>
+noremap \t: :Tab /:\zs<cr>
+
 map \gs :Gstatus<cr>
 map \gd :call GitDiff()<cr>
 
@@ -436,6 +443,8 @@ augroup Elentok_Misc
   autocmd BufRead,BufEnter *.applescript set filetype=applescript
   autocmd BufRead,BufEnter *.rxls setlocal filetype=ruby
   autocmd BufRead,BufEnter *.md setlocal filetype=markdown
+  autocmd BufRead,BufEnter gitconfig setlocal filetype=gitconfig
+  autocmd BufRead,BufEnter .gitconfig* setlocal filetype=gitconfig
 
   " Javascript
   autocmd BufRead,BufEnter *.js setlocal nocindent smartindent
